@@ -1,8 +1,6 @@
 # Handgestuurde RC Wagon
 
-## Doel
-
-## Technisch
+## 
 
 ## Specificaties
 
