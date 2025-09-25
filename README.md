@@ -1,8 +1,10 @@
 # Handgestuurde RC Wagon
 
-## 
+## Doel
 
-##
+## Technisch
+
+## Specificaties
 
 ## Team
 - Sam
