@@ -1,1 +1,1 @@
-<img src="./introductieposter.png" alt="Poster" width="300">
+<img src="./introductieposter.png" alt="Poster" width="600">
