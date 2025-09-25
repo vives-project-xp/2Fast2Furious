@@ -7,8 +7,8 @@ Ontwikkel een RC wagen die alle richtingen uit kan rijden en bestuurd wordt via 
 ## Specificaties
 
 ## Team
-- Sam
-- Niels
-- Ewoud
-- Maxime
-- Jules
+- Sam De Wispelaere
+- Niels Denoo
+- Ewoud Bouttelisier
+- Maxime Coen   
+- Jules Declercq
