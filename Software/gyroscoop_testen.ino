@@ -65,20 +65,20 @@ void loop() {
   if (dt <= 0) dt = 0.001f;
   lastMicros = now;
 
-  // --- accelerometer angles (degrees)
+  //  accelerometer angles (degrees)
   float accRoll  = atan2(ay_g, az_g) * MY_RAD_TO_DEG;
   float accPitch = atan2(-ax_g, sqrt(ay_g*ay_g + az_g*az_g)) * MY_RAD_TO_DEG;
 
-  // --- apply deadband to gyro (avoid integrating tiny noise)
+  //  apply deadband to gyro (avoid integrating tiny noise)
   if (fabs(gx_dps) < GYRO_DEADBAND) gx_dps = 0;
   if (fabs(gy_dps) < GYRO_DEADBAND) gy_dps = 0;
   if (fabs(gz_dps) < GYRO_DEADBAND) gz_dps = 0;
 
-  // --- integrate gyro to angles
+  //  integrate gyro to angles
   float gyroAngleX = angleX + gx_dps * dt;
   float gyroAngleY = angleY + gy_dps * dt;
 
-  // --- complementary filter: combine gyro (short term) + accel (long term)
+  //  complementary filter: combine gyro (short term) + accel (long term)
   angleX = ALPHA * gyroAngleX + (1.0f - ALPHA) * accRoll;
   angleY = ALPHA * gyroAngleY + (1.0f - ALPHA) * accPitch;
 
