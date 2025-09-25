@@ -13,7 +13,7 @@ De totaalprijs van alle componenten is:
 
 ## Introductieposter
 
-[Hier](./Introductieposter/introductieposter.png) kan je de introductieposter vinden van ons project.
+[Hier](./Introductieposter/introductieposter.md) kan je de introductieposter vinden van ons project.
 
 ## Architectuur document
 
