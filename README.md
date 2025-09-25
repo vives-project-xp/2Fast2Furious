@@ -1,4 +1,4 @@
-# Handgestuurde RC Wagon
+# Handgestuurde RC Wagen
 
 ## Opdracht
 
