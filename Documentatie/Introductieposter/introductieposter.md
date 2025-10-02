@@ -1,0 +1,1 @@
+<img src="./introductieposter.png" alt="Poster" width="600">
