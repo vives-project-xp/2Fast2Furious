@@ -1,11 +1,11 @@
-## De hardware van de auto
+# De hardware van de auto
 
-# Auto:
+### Auto:
 1. Arduino Nano 33 BLE Sense Rev2
 2. 2x L298N motor driver
 3. 4x TT-Motor
 4. 9V Batterij
 
-# Tank gedeelte:
+### Tank gedeelte:
 1. Servo SG90 Micro
 2. Laser diode 5v
