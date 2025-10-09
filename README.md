@@ -10,7 +10,7 @@ We ontwikkelen een RC wagen die alle richtingen uit kan rijden en bestuurd wordt
 
 ## verdere uitbreidingen
 
-- Het toevoegen van een kannon op de wagen waardoor deze op een soort tank lijkt. Het kannon is een lasertransmitter waarmee je op doelwitten met een laserreceiver kan schieten.
+- Het toevoegen van een kanon op de wagen waardoor deze op een soort tank lijkt. Het kanon is een lasertransmitter waarmee je op doelwitten met een laserreceiver kan schieten.
 - Het toevoegen van bepaalde handbewegingen om trucjes uit te voeren.
 
 ---
