@@ -48,14 +48,8 @@ Hieronder staan de architectuur documenten voor het project.
 
 ### Architectuur van de auto
 
-<figure style="background:#ffffff; padding:8px; display:inline-block;">
-	<img src="./schema's/RC_wagen.drawio.svg" alt="Architectuur van de auto" style="display:block; background:#ffffff;" />
-	<figcaption>Architectuur van de auto</figcaption>
-</figure>
+![Architectuur van de auto](./schema's/RC_wagen.drawio.svg)
 
 ### Architectuur van de handcontroller
 
-<figure style="background:#ffffff; padding:8px; display:inline-block;">
-	<img src="./schema's/Handcontroller.drawio.svg" alt="Architectuur van de handcontroller" style="display:block; background:#ffffff;" />
-	<figcaption>Architectuur van de handcontroller</figcaption>
-</figure>
+![Architectuur van de handcontroller](./schema's/Handcontroller.drawio.svg)
