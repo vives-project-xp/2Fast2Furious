@@ -12,7 +12,6 @@ bool deviceConnected = false;
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
 
   // Start BLE
   if (!BLE.begin()) {

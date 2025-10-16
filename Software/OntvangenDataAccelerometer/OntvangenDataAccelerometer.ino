@@ -11,6 +11,37 @@ bool connected = false;
 // Houd de vorige beweging bij
 String prevState = "";
 
+// Functie om richting te bepalen
+String getDirection(int16_t xi, int16_t yi) {
+  // Drempels
+  int singleThreshold = 700;     // Voor enkelvoudige richtingen
+  int diagonalThreshold = 300;   // Voor diagonale richtingen
+
+  // Eerst diagonalen checken (lagere drempel)
+  if (xi > diagonalThreshold && yi > diagonalThreshold) {
+    return "Rechts-Vooruit";
+  } else if (xi > diagonalThreshold && yi < -diagonalThreshold) {
+    return "Links-Vooruit";
+  } else if (xi < -diagonalThreshold && yi > diagonalThreshold) {
+    return "Rechts-Achteruit";
+  } else if (xi < -diagonalThreshold && yi < -diagonalThreshold) {
+    return "Links-Achteruit";
+  } 
+  // Enkelvoudige richtingen checken (hogere drempel)
+  else if (xi > singleThreshold) {
+    return "Vooruit";
+  } else if (xi < -singleThreshold) {
+    return "Achteruit";
+  } else if (yi > singleThreshold) {
+    return "Rechts";
+  } else if (yi < -singleThreshold) {
+    return "Links";
+  } 
+  else {
+    return "Still";
+  }
+}
+
 void setup() {
   Serial.begin(9600);
   while (!Serial);
@@ -64,36 +95,10 @@ void loop() {
       zi = word(data[5], data[4]);
     }
 
-    // Drempels
-    int singleThreshold = 700; // Voor enkelvoudige richtingen
-    int diagonalThreshold = 300; // Voor diagonale richtingen
+    // Bepaal huidige richting via aparte functie
+    String currentState = getDirection(xi, yi);
 
-    String currentState = "";
-
-    // Eerst diagonalen checken (lagere drempel)
-    if (xi > diagonalThreshold && yi > diagonalThreshold) {
-      currentState = "Rechts-Vooruit";
-    } else if (xi > diagonalThreshold && yi < -diagonalThreshold) {
-      currentState = "Links-Vooruit";
-    } else if (xi < -diagonalThreshold && yi > diagonalThreshold) {
-      currentState = "Rechts-Achteruit";
-    } else if (xi < -diagonalThreshold && yi < -diagonalThreshold) {
-      currentState = "Links-Achteruit";
-    } 
-    // Enkelvoudige richtingen checken (hogere drempel)
-    else if (xi > singleThreshold) {
-      currentState = "Vooruit";
-    } else if (xi < -singleThreshold) {
-      currentState = "Achteruit";
-    } else if (yi > singleThreshold) {
-      currentState = "Rechts";
-    } else if (yi < -singleThreshold) {
-      currentState = "Links";
-    } else {
-      currentState = "Still";
-    }
-
-    // Print alleen als status verandert
+    // Alleen printen bij verandering
     if (currentState != prevState) {
       Serial.println(currentState);
       prevState = currentState;
