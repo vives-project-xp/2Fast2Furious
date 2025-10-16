@@ -46,10 +46,16 @@ De L298N motor driver is een motor driver die we gebruiken om de TT-motoren aan 
 
 Hieronder staan de architectuur documenten voor het project.
 
-#### Architectuur van de auto
+### Architectuur van de auto
 
-![Architectuur van de auto](./schema's/RC_wagen.drawio.svg)
+<figure style="background:#ffffff; padding:8px; display:inline-block;">
+	<img src="./schema's/RC_wagen.drawio.svg" alt="Architectuur van de auto" style="display:block; background:#ffffff;" />
+	<figcaption>Architectuur van de auto</figcaption>
+</figure>
 
-#### Architectuur van de handcontroller
+### Architectuur van de handcontroller
 
-![Architectuur van de handcontroller](./schema's/Handcontroller.drawio.svg)
+<figure style="background:#ffffff; padding:8px; display:inline-block;">
+	<img src="./schema's/Handcontroller.drawio.svg" alt="Architectuur van de handcontroller" style="display:block; background:#ffffff;" />
+	<figcaption>Architectuur van de handcontroller</figcaption>
+</figure>
