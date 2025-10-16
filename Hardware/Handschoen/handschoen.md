@@ -18,13 +18,13 @@ De bewegingsdata van de IMU wordt in de Arduino firmware vertaald naar digitale 
 | Modus | IMU Data | Commando |
 | :--- | :--- | :--- |
 | Car | Kantelen naar voren | Rijden vooruit |
-| Car | Kantelen naar achteren** | Rijden achteruit |
-| Car | Kantelen naar links** | Rijden links |
-| Car | Kantelen naar rechts** | Tijden rechts |
-| Turret | Kantelen naar links** | Car roteert op as links |
-| Turret | Kantelen naar rechts** | Car roteert op as rechts |
-| Turret | Kantelen naar voren** | Hoger mikt lager (servo) |
-| Turret | Kantelen naar achteren** | Turret mikt hoger (servo) |
+| Car | Kantelen naar achteren | Rijden achteruit |
+| Car | Kantelen naar links | Rijden links |
+| Car | Kantelen naar rechts | Tijden rechts |
+| Turret | Kantelen naar links | Car roteert op as links |
+| Turret | Kantelen naar rechts | Car roteert op as rechts |
+| Turret | Kantelen naar voren | Hoger mikt lager (servo) |
+| Turret | Kantelen naar achteren | Turret mikt hoger (servo) |
 
 ## Drukknop
 Een drukknop wordt op de Arduino gemonteerd en dient als een toggle/schakelaar tussen de modussen.
