@@ -50,7 +50,6 @@ Hieronder staan de architectuur documenten voor het project.
 
 ![Architectuur van de auto](./schema's/RC_wagen.drawio.svg)
 
-
 #### Architectuur van de handcontroller
 
 ![Architectuur van de handcontroller](./schema's/Handcontroller.drawio.svg)

@@ -40,10 +40,10 @@ We ontwikkelen een RC wagen die alle richtingen uit kan rijden en bestuurd wordt
 ### Sprint 1 (week 1-4)
 
 - [x] onderzoek naar geschikte componenten
-- [ ] ontwerp van de handcontroller
+- [x] ontwerp van de handcontroller
 - [x] ontwerp van de RC wagen
 - [ ] testen van componenten
-- [ ] bestellen componenten
+- [x] bestellen componenten
 - [x] beginnen met code schrijven
 
 ### Sprint 2 (week 5-8)
