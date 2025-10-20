@@ -16,14 +16,16 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 3. 4x TT-Motor
 4. 9V Batterij
 
-![Schema van de auto (ESP32)](./Auto/schema_auto_esp32.png)
-
-*Figuur: Elektrisch schema van de auto met ESP32 (moet normaal Arduino Nano 33 BLE Sense REV2).*
-
 ### Tank gedeelte
 
 1. Servo SG90 Micro
 2. Laser diode
+
+![Schema van de auto ](./Auto/sketch_auto_electronics_2.png)
+
+*Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2*
+
+
 
 ## Handschoen Controller
 
@@ -76,6 +78,19 @@ De voor- en achterwaartse kanteling wordt gebruikt om een servomotor in de turre
 De eerdervernoemde drukknop die de modus schakelt heeft een secundaire functie, namelijk de IR-laser aan of uit schakelen, waarbij deze in de Turret Modus aanstaat.
 Dit voorkomt dat de laser onbedoeld aanblijft.
 
+
+### Onderdelen Handschoen
+1. Arduino Nano 33 BLE Sense REV2
+
+2. drukknop(pen)
+
+3. Powerbank met 5V USB-A
+
+#### Schema:
+
+![Schema van de handschoen ](./Handschoen/handschoenCircuit.png)
+
 ## Kalibratie
 
 TBA
+
