@@ -54,6 +54,16 @@ De lasertransmitter zendt een laserstraal uit die wordt gebruikt als projectiel 
 
 De Arduino Nano is een kleine, veelzijdige microcontroller die we gebruiken in de target van ons lasershooterspel. Het is verantwoordelijk voor het detecteren van hits van de laserstraal en het bijhouden van de score.
 
+## idee kannon en target
+
+### kannon
+
+Het idee dat we hebben voor het kannon is om een servomotor op de tank te plaatsen die het kannon omhoog en omlaag kan bewegen. Op het kannon is een lasertransmitter gemonteerd die een laserstraal uitzendt wanneer het kannon wordt afgevuurd. De lasertransmitter wordt aangestuurd door de Arduino Nano 33 BLE Sense Rev2 op de handcontroller en de servomotor ook. De besturing via de handcontroller zou nog steeds hetzelfde zijn maar we voegen een extra knop toe om te wisselen tussen rijden en turret modus. In turret modus kan de gebruiker het kannon omhoog en omlaag bewegen met behulp van de gyroscoop in de handcontroller, ook kan de gebruiker de tank laten draaien rond zijn eigen as. De laser gaat aan zodra de wagen in turret modus wordt geschakelt.
+
+### target
+
+Het target bestaat uit een Arduino Nano die is verbonden met een laser ontvanger module. De laser ontvanger detecteert wanneer de laserstraal van het kannon het target raakt. Wanneer een hit wordt gedetecteerd, stuurt de Arduino Nano een signaal naar een LED of een buzzer om aan te geven dat het target is geraakt. Daarnaast kan de Arduino Nano ook de score bijhouden en deze weergeven op een klein LCD-scherm.
+
 ## Introductieposter
 
 [Hier](./Introductieposter/introductieposter.md) kan je de introductieposter vinden van ons project.
