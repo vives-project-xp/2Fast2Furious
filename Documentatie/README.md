@@ -34,9 +34,25 @@ De Arduino Nano 33 BLE Sense Rev2 is een compacte  microcontroller vergelijkbaar
 
 De TT-motor is een kleine, goedkope en efficiënte motor die vaak wordt gebruikt in robotica en kleine voertuigen. In ons project gebruiken we de TT-motoren om de mecanum wielen aan te drijven.
 
-## L298N motor driver
+### L298N motor driver
 
 De L298N motor driver is een motor driver die we gebruiken om de TT-motoren aan te sturen. De motor driver kan twee DC-motoren tegelijk aansturen en kan zowel de snelheid als de draairichting van de motoren regelen.
+
+### Mecanum wielen
+
+Mecanum wielen zijn speciale wielen die omnidirectionele beweging mogelijk maken. Dit betekent dat het voertuig in elke richting kan bewegen zonder van richting te veranderen. Dit wordt bereikt door de unieke constructie van de wielen, die bestaan uit meerdere rollers die onder een hoek zijn geplaatst.
+
+### Servomotor SG90 micro
+
+De SG90 is een kleine en lichte servomotor die vaak wordt gebruikt in modelbouw en robotica. In ons project gebruiken we de SG90 servomotor om het kannon van de auto omhoog en omlaag te bewegen.
+
+### Lasertransmitter en ontvanger
+
+De lasertransmitter zendt een laserstraal uit die wordt gebruikt als projectiel in ons lasershooterspel. De laser ontvanger detecteert wanneer de laserstraal wordt geraakt, wat wordt gebruikt om te bepalen of een doelwit is getroffen.
+
+### arduino nano
+
+De Arduino Nano is een kleine, veelzijdige microcontroller die we gebruiken in de target van ons lasershooterspel. Het is verantwoordelijk voor het detecteren van hits van de laserstraal en het bijhouden van de score.
 
 ## Introductieposter
 
