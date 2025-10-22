@@ -5,7 +5,7 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 ## inhoud
 
 1. [De hardware van de auto](#de-hardware-van-de-auto)
-2. [Handschoen Controller](#handschoen-controller)
+2. [Handschoen Controller](#hand-controller)
 
 ## De hardware van de auto
 
@@ -27,11 +27,11 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 
 
 
-## Handschoen Controller
+## Hand Controller
 
 ### Concept
 
-De handschoen controller is de intuïtieve/immersive interface voor de besturing van de RC-car, met uitbreiding van een IR-turret.
+De hand controller is de intuïtieve/immersive interface voor de besturing van de RC-car, met uitbreiding van een IR-turret.
 
 ### Kern
 
@@ -42,7 +42,7 @@ De controller maakt gebruik van een Arduino Nano 33 BLE Sense Rev2. Deze microco
 
 ### Montage
 
-De Arduino wordt gemonteerd op de rug van een handschoen, best op een buigzaam stuk kurk of een vergelijkbaar licht/isolerend/vervormbaar/comfortabel materiaal.
+De Arduino wordt gemonteerd op een 3D-geprintte palm-bracelet dat ook de 3x AAA batterijhouder huist. Zie de .stl-files voor meer info.
 
 ### Besturing
 
@@ -79,16 +79,18 @@ De eerdervernoemde drukknop die de modus schakelt heeft een secundaire functie, 
 Dit voorkomt dat de laser onbedoeld aanblijft.
 
 
-### Onderdelen Handschoen
+### Onderdelen Hand controller
 1. Arduino Nano 33 BLE Sense REV2
 
 2. drukknop(pen)
 
-3. Powerbank met 5V USB-A
+3. 3x AAA batterijhouder
+
+4. Bracelet behuizing en straps
 
 #### Schema:
 
-![Schema van de handschoen ](./Handschoen/handschoenCircuit.png)
+![Schema van de hand controller ](./Handschoen/handschoenCircuit.png)
 
 ## Kalibratie
 
