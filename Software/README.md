@@ -13,3 +13,12 @@ Deze map bevat alle software bestanden en code voor het project.
 - Knop aan Hand controller Code 
 - Wat verstuuren we exact van de hand naar de auto ( knop , accelero meter , servomotor)
 - Code servo + normaale motoren + lazer combineren
+
+
+## auto moet kunnen
+
+- Vooruit achteruit links rechts
+- zij richtingen
+- ter plekke draaien
+- Lazer "schieten"
+- Lazer naar boven en beneden bewegen. 
