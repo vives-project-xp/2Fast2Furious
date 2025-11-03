@@ -38,7 +38,7 @@ void setup() {
   Serial.begin(9600);
 }
 
-// Algemene motor-functies
+
 void motorVooruit(int in1, int in2, int en, int snelheid) {
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
@@ -57,28 +57,91 @@ void motorStop(int in1, int in2, int en) {
   analogWrite(en, 0);
 }
 
-void loop() {
-  // Voorbeeld: elke motor apart testen
 
-  Serial.println("Motor 1 vooruit");
-  motorVooruit(M1_IN1, M1_IN2, M1_EN, 200);
-  delay(1500);
+void vooruit(int snelheid) {
+  motorVooruit(M1_IN1, M1_IN2, M1_EN, snelheid);
+  motorVooruit(M2_IN1, M2_IN2, M2_EN, snelheid);
+  motorVooruit(M3_IN1, M3_IN2, M3_EN, snelheid);
+  motorVooruit(M4_IN1, M4_IN2, M4_EN, snelheid);
+}
+
+void achteruit(int snelheid) {
+  motorAchteruit(M1_IN1, M1_IN2, M1_EN, snelheid);
+  motorAchteruit(M2_IN1, M2_IN2, M2_EN, snelheid);
+  motorAchteruit(M3_IN1, M3_IN2, M3_EN, snelheid);
+  motorAchteruit(M4_IN1, M4_IN2, M4_EN, snelheid);
+}
+
+void links(int snelheid) {
+  motorAchteruit(M1_IN1, M1_IN2, M1_EN, snelheid);
+  motorVooruit(M2_IN1, M2_IN2, M2_EN, snelheid);
+  motorVooruit(M3_IN1, M3_IN2, M3_EN, snelheid);
+  motorAchteruit(M4_IN1, M4_IN2, M4_EN, snelheid);
+}
+
+void rechts(int snelheid) {
+  motorVooruit(M1_IN1, M1_IN2, M1_EN, snelheid);
+  motorAchteruit(M2_IN1, M2_IN2, M2_EN, snelheid);
+  motorAchteruit(M3_IN1, M3_IN2, M3_EN, snelheid);
+  motorVooruit(M4_IN1, M4_IN2, M4_EN, snelheid);
+}
+
+void draaiCW(int snelheid) {  // met de klok mee
+  motorVooruit(M1_IN1, M1_IN2, M1_EN, snelheid);
+  motorAchteruit(M2_IN1, M2_IN2, M2_EN, snelheid);
+  motorVooruit(M3_IN1, M3_IN2, M3_EN, snelheid);
+  motorAchteruit(M4_IN1, M4_IN2, M4_EN, snelheid);
+}
+
+void draaiCCW(int snelheid) { // tegen de klok in
+  motorAchteruit(M1_IN1, M1_IN2, M1_EN, snelheid);
+  motorVooruit(M2_IN1, M2_IN2, M2_EN, snelheid);
+  motorAchteruit(M3_IN1, M3_IN2, M3_EN, snelheid);
+  motorVooruit(M4_IN1, M4_IN2, M4_EN, snelheid);
+}
+
+void stopAlles() {
   motorStop(M1_IN1, M1_IN2, M1_EN);
-
-  Serial.println("Motor 2 achteruit");
-  motorAchteruit(M2_IN1, M2_IN2, M2_EN, 180);
-  delay(1500);
   motorStop(M2_IN1, M2_IN2, M2_EN);
-
-  Serial.println("Motor 3 vooruit");
-  motorVooruit(M3_IN1, M3_IN2, M3_EN, 220);
-  delay(1500);
   motorStop(M3_IN1, M3_IN2, M3_EN);
-
-  Serial.println("Motor 4 achteruit");
-  motorAchteruit(M4_IN1, M4_IN2, M4_EN, 255);
-  delay(1500);
   motorStop(M4_IN1, M4_IN2, M4_EN);
+}
 
-  delay(2000); // korte pauze
+
+void loop() {
+  Serial.println("Vooruit");
+  vooruit(200);
+  delay(2000);
+  stopAlles();
+  delay(1000);
+
+  Serial.println("Achteruit");
+  achteruit(200);
+  delay(2000);
+  stopAlles();
+  delay(1000);
+
+  Serial.println("Links");
+  links(200);
+  delay(2000);
+  stopAlles();
+  delay(1000);
+
+  Serial.println("Rechts");
+  rechts(200);
+  delay(2000);
+  stopAlles();
+  delay(1000);
+
+  Serial.println("Draaien CW");
+  draaiCW(200);
+  delay(2000);
+  stopAlles();
+  delay(1000);
+
+  Serial.println("Draaien CCW");
+  draaiCCW(200);
+  delay(2000);
+  stopAlles();
+  delay(2000);
 }
