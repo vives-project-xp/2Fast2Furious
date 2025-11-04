@@ -1,5 +1,8 @@
 # Handgestuurde RC Wagen
 
+[![VIVES](https://img.shields.io/badge/VIVES-Bachelor_ICT-blue?style=flat)](https://www.vives.be)
+[![Project Experience](https://img.shields.io/badge/Project_Experience-2.1-green?style=flat)](https://github.com/vives-project-xp)
+
 > Ontwikkel een RC wagen die bestuurd wordt via handbewegingen
 
 <img src="./Documentatie/Introductieposter/introductieposter.png" alt="Poster" width="600">
