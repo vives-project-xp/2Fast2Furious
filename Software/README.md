@@ -25,8 +25,12 @@ Nodige libraries voor dit project :
 - Vooruit achteruit links rechts ✅ 
 - zij richtingen ✅
 - ter plekke draaien ✅
-- andere mode ontvangen ❌
-- Lazer "schieten" ❌
-- Lazer naar boven en beneden bewegen. ❌
+- andere mode ontvangen ✅
+- Lazer "schieten" ✅
+- Lazer naar boven en beneden bewegen. ✅
+
+## Hand moet nog kunnen
+ - veranderen van mode ❌
+ - signaal schieten verstuuren ❌
 
 ⬅️ [Terug naar overzicht](../README.md#Inhoud)
