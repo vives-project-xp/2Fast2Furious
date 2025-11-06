@@ -167,6 +167,10 @@ void loop() {
           else if (cmd == "L") links(snelheid);
           else if (cmd == "R") rechts(snelheid);
           else if (cmd == "S") stopAlles();
+          else if (cmd == "f") Serial.println("Loop Omhoog");
+          else if (cmd == "b") Serial.println("Loop Omlaag");
+          else if (cmd == "l") draaiCCW(snelheid);
+          else if (cmd == "r") draaiCW(snelheid);
           else stopAlles();
         }
       }
