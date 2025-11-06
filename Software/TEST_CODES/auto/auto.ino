@@ -69,6 +69,20 @@ void rechts(int s) {
   motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
   motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
 }
+
+void draaiCW(int s) {  // met de klok mee
+  motorVooruit(M1_IN1, M1_IN2, M1_EN, s);
+  motorAchteruit(M2_IN1, M2_IN2, M2_EN, s);
+  motorVooruit(M3_IN1, M3_IN2, M3_EN, s);
+  motorAchteruit(M4_IN1, M4_IN2, M4_EN, s);
+}
+
+void draaiCCW(int s) { // tegen de klok in
+  motorAchteruit(M1_IN1, M1_IN2, M1_EN, s);
+  motorVooruit(M2_IN1, M2_IN2, M2_EN, s);
+  motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
+  motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
+}
 void stopAlles() {
   motorStop(M1_IN1, M1_IN2, M1_EN);
   motorStop(M2_IN1, M2_IN2, M2_EN);

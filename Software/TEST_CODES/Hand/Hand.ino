@@ -8,6 +8,7 @@ BLEStringCharacteristic commandCharacteristic("abcdef01-1234-5678-1234-56789abcd
 unsigned long previousMillis = 0;
 const long interval = 100;  
 bool deviceConnected = false;
+bool defaultMode = true;
 String prevCommand = "";
 
 
@@ -93,10 +94,13 @@ void loop() {
       // Zet om naar milli-g en cast naar int16_t
       int16_t xi = (int16_t)(x * 1000);
       int16_t yi = (int16_t)(y * 1000);
-      int16_t zi = (int16_t)(z * 1000);
+      //int16_t zi = (int16_t)(z * 1000);
 
-      String currentCommand = getCommand(xi, yi);
+      if(defaultMode) {
+        String currentCommand = getCommand(xi, yi);
 
+      }
+      
       if (currentCommand != prevCommand) {
         commandCharacteristic.writeValue(currentCommand);
         Serial.print("Verstuurd commando: ");
