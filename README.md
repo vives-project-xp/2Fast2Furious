@@ -5,7 +5,7 @@
 
 > Ontwikkel een RC wagen die bestuurd wordt via handbewegingen
 
-<img src="./Documentatie/Introductieposter/introductieposter.png" alt="Poster" width="600">
+<img src="./Documentatie/Introductieposter/introductieposter_v2.png" alt="Poster" width="600">
 
 
 
