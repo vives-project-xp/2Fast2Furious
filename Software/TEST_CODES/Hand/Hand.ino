@@ -6,24 +6,45 @@ BLEService controlService("12345678-1234-5678-1234-56789abcdef0");
 BLEStringCharacteristic commandCharacteristic("abcdef01-1234-5678-1234-56789abcdef0", BLERead | BLENotify, 20);
 
 unsigned long previousMillis = 0;
-const long interval = 100;  // update-interval (ms)
+const long interval = 100;  
 bool deviceConnected = false;
 String prevCommand = "";
 
-// --- Richtingsdetectie functie ---
-String getCommand(float x, float y) {
-  int singleThreshold = 0.7;     // m/s² drempels
-  int diagonalThreshold = 0.3;
 
-  if (x > diagonalThreshold && y > diagonalThreshold) return "FR"; // Forward-Right
-  if (x > diagonalThreshold && y < -diagonalThreshold) return "FL";
-  if (x < -diagonalThreshold && y > diagonalThreshold) return "BR";
-  if (x < -diagonalThreshold && y < -diagonalThreshold) return "BL";
-  if (x > singleThreshold) return "F";   // Vooruit
-  if (x < -singleThreshold) return "B";  // Achteruit
-  if (y > singleThreshold) return "R";   // Rechts
-  if (y < -singleThreshold) return "L";  // Links
-  return "S";                            // Stilstand
+String getCommand(float xi, float yi) {
+  // Drempels
+  
+  //Serial.print("X : ");
+  //Serial.println(xi);
+  //Serial.print("Y : ");
+  //Serial.println(yi);
+  
+  int singleThreshold = 700;     // Voor enkelvoudige richtingen
+  int diagonalThreshold = 300;   // Voor diagonale richtingen
+
+  // Eerst diagonalen checken (lagere drempel)
+  if (xi > diagonalThreshold && yi > diagonalThreshold) {
+    return "FL";
+  } else if (xi > diagonalThreshold && yi < -diagonalThreshold) {
+    return "FR";
+  } else if (xi < -diagonalThreshold && yi > diagonalThreshold) {
+    return "BL";
+  } else if (xi < -diagonalThreshold && yi < -diagonalThreshold) {
+    return "BR";
+  } 
+  // Enkelvoudige richtingen checken (hogere drempel)
+  else if (xi > singleThreshold) {
+    return "F";
+  } else if (xi < -singleThreshold) {
+    return "B";
+  } else if (yi > singleThreshold) {
+    return "L";
+  } else if (yi < -singleThreshold) {
+    return "R";
+  } 
+  else {
+    return "S";
+  }                          // Stilstand
 }
 
 void setup() {
@@ -69,7 +90,12 @@ void loop() {
     if (IMU.accelerationAvailable()) {
       IMU.readAcceleration(x, y, z);
 
-      String currentCommand = getCommand(x, y);
+      // Zet om naar milli-g en cast naar int16_t
+      int16_t xi = (int16_t)(x * 1000);
+      int16_t yi = (int16_t)(y * 1000);
+      int16_t zi = (int16_t)(z * 1000);
+
+      String currentCommand = getCommand(xi, yi);
 
       if (currentCommand != prevCommand) {
         commandCharacteristic.writeValue(currentCommand);

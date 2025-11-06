@@ -8,10 +8,15 @@ Deze map bevat alle software bestanden en code voor het project.
 2. [Handschoen Controller](./handcontroller/README.md): De software die op de Arduino Nano 33 BLE Sense Rev2 van de handschoen draait.
 3. [testen van componenten](./testen_componenten/README.md): De software voor het testen van de verschillende hardware componenten.
 
+
+## Libraries
+Nodige libraries voor dit project :
+ - Arduino_BMI270_BMM150
+ - ArduinoBLE
+
 ## TODO
 
 - Knop aan Hand controller Code 
-- Wat verstuuren we exact van de hand naar de auto ( knop , accelero meter , servomotor)
 - Code servo + normaale motoren + lazer combineren
 
 

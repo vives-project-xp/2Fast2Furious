@@ -7,7 +7,7 @@
 
 // Motor 2
 #define M2_IN1 5
-#define M2_IN2 6
+#define M2_IN2 6 
 #define M2_EN  9
 
 // Motor 3
