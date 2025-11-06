@@ -2,7 +2,7 @@
 
 Deze map bevat alle hardware componenten en schema's voor het project.
 
-## inhoud
+## Inhoud
 
 1. [De hardware van de auto](#de-hardware-van-de-auto)
 2. [Handschoen Controller](#hand-controller)
@@ -94,5 +94,7 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 
 ## Kalibratie
 
-TBA
+TBA  
+
+⬅️ [Terug naar overzicht](../README.md#Inhoud)
 

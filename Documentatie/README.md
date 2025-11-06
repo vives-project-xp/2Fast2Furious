@@ -22,7 +22,7 @@ Hieronder staat de Bill of Materials (BOM) voor het project:
 
 De totaalprijs van alle componenten is: €162,60
 
-## componenten
+## Componenten
 
 Hieronder wat meer informatie over de gebruikte componenten:
 
@@ -50,17 +50,17 @@ De SG90 is een kleine en lichte servomotor die vaak wordt gebruikt in modelbouw 
 
 De lasertransmitter zendt een laserstraal uit die wordt gebruikt als projectiel in ons lasershooterspel. De laser ontvanger detecteert wanneer de laserstraal wordt geraakt, wat wordt gebruikt om te bepalen of een doelwit is getroffen.
 
-### arduino nano
+### Arduino nano
 
 De Arduino Nano is een kleine, veelzijdige microcontroller die we gebruiken in de target van ons lasershooterspel. Het is verantwoordelijk voor het detecteren van hits van de laserstraal en het bijhouden van de score.
 
-## idee kannon en target
+## Idee kannon en target
 
-### kannon
+### Kannon
 
 Het idee dat we hebben voor het kannon is om een servomotor op de tank te plaatsen die het kannon omhoog en omlaag kan bewegen. Op het kannon is een lasertransmitter gemonteerd die een laserstraal uitzendt wanneer het kannon wordt afgevuurd. De lasertransmitter wordt aangestuurd door de Arduino Nano 33 BLE Sense Rev2 op de handcontroller en de servomotor ook. De besturing via de handcontroller zou nog steeds hetzelfde zijn maar we voegen een extra knop toe om te wisselen tussen rijden en turret modus. In turret modus kan de gebruiker het kannon omhoog en omlaag bewegen met behulp van de gyroscoop in de handcontroller, ook kan de gebruiker de tank laten draaien rond zijn eigen as. De laser gaat aan zodra de wagen in turret modus wordt geschakelt.
 
-### target
+### Target
 
 Het target bestaat uit een Arduino Nano die is verbonden met een laser ontvanger module. De laser ontvanger detecteert wanneer de laserstraal van het kannon het target raakt. Wanneer een hit wordt gedetecteerd, stuurt de Arduino Nano een signaal naar een LED of een buzzer om aan te geven dat het target is geraakt. Daarnaast kan de Arduino Nano ook de score bijhouden en deze weergeven op een klein LCD-scherm.
 
@@ -78,4 +78,10 @@ Hieronder staan de architectuur documenten voor het project.
 
 ### Architectuur van de handcontroller
 
-![Architectuur van de handcontroller](./schema's/Handcontroller.drawio.svg)
+![Architectuur van de handcontroller](./schema's/Handcontroller.drawio.svg)  
+
+## Prototypes
+
+In de map [afbeeldingen](./Afbeeldingen/) kan je enkele foto's vinden van enkele prototype's. Er is een afbeelding te vinden van een amazon variant waar onze eigen rc wagen op gebaseerd is. Er zijn ook schetsen te vinden over hoe we componenten plaatsen op onze rc wagen (ook te afmetingen zijn hierop te vinden).  
+
+⬅️ [Terug naar overzicht](../README.md#Inhoud)

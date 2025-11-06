@@ -2,7 +2,7 @@
 
 Deze map bevat alle software bestanden en code voor het project.
 
-## inhoud
+## Inhoud
 
 1. [De software van de auto](./Auto/README.md): De software die op de Arduino Nano 33 BLE Sense Rev2 van de auto draait.
 2. [Handschoen Controller](./handcontroller/README.md): De software die op de Arduino Nano 33 BLE Sense Rev2 van de handschoen draait.
@@ -20,10 +20,12 @@ Nodige libraries voor dit project :
 - Code servo + normaale motoren + lazer combineren
 
 
-## auto moet kunnen
+## Auto moet kunnen
 
 - Vooruit achteruit links rechts
 - zij richtingen
 - ter plekke draaien
 - Lazer "schieten"
 - Lazer naar boven en beneden bewegen. 
+
+⬅️ [Terug naar overzicht](../README.md#Inhoud)
