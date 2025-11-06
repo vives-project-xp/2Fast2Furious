@@ -16,16 +16,17 @@ Nodige libraries voor dit project :
 
 ## TODO
 
-- Knop aan Hand controller Code 
+- Knop aan Hand controller Code of hand gebaren 
 - Code servo + normaale motoren + lazer combineren
 
 
 ## Auto moet kunnen
 
-- Vooruit achteruit links rechts
-- zij richtingen
-- ter plekke draaien
-- Lazer "schieten"
-- Lazer naar boven en beneden bewegen. 
+- Vooruit achteruit links rechts ✅ 
+- zij richtingen ✅
+- ter plekke draaien ✅
+- andere mode ontvangen ❌
+- Lazer "schieten" ❌
+- Lazer naar boven en beneden bewegen. ❌
 
 ⬅️ [Terug naar overzicht](../README.md#Inhoud)
