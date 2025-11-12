@@ -5,7 +5,7 @@
 
 > Ontwikkel een RC wagen die bestuurd wordt via handbewegingen
 
-<img src="./Documentatie/Introductieposter/introductieposter.png" alt="Poster" width="600">
+<img src="./Documentatie/Introductieposter/introductieposter_v2.png" alt="Poster" width="600">
 
 
 
@@ -54,6 +54,12 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 - [x] beginnen met code schrijven
 
 ### Sprint 2 (week 5-8)
+
+- [x] ambassadeur van het project (poster & sociale media)
+- [ ] code testen en aanpassen waar nodig
+- [ ] ontwerp van de laser targets
+- [ ] in elkaar steken van de handcontroller
+- [ ] in elkaar steken van de RC wagen
 
 ### Sprint 3 (week 9-12)
 

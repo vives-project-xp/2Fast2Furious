@@ -7,7 +7,7 @@
 
 // Motor 2
 #define M2_IN1 5
-#define M2_IN2 6
+#define M2_IN2 6 
 #define M2_EN  9
 
 // Motor 3
@@ -66,6 +66,20 @@ void links(int s) {
 void rechts(int s) {
   motorVooruit(M1_IN1, M1_IN2, M1_EN, s);
   motorAchteruit(M2_IN1, M2_IN2, M2_EN, s);
+  motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
+  motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
+}
+
+void draaiCW(int s) {  // met de klok mee
+  motorVooruit(M1_IN1, M1_IN2, M1_EN, s);
+  motorAchteruit(M2_IN1, M2_IN2, M2_EN, s);
+  motorVooruit(M3_IN1, M3_IN2, M3_EN, s);
+  motorAchteruit(M4_IN1, M4_IN2, M4_EN, s);
+}
+
+void draaiCCW(int s) { // tegen de klok in
+  motorAchteruit(M1_IN1, M1_IN2, M1_EN, s);
+  motorVooruit(M2_IN1, M2_IN2, M2_EN, s);
   motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
   motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
 }
@@ -153,6 +167,10 @@ void loop() {
           else if (cmd == "L") links(snelheid);
           else if (cmd == "R") rechts(snelheid);
           else if (cmd == "S") stopAlles();
+          else if (cmd == "f") Serial.println("Loop Omhoog");
+          else if (cmd == "b") Serial.println("Loop Omlaag");
+          else if (cmd == "l") draaiCCW(snelheid);
+          else if (cmd == "r") draaiCW(snelheid);
           else stopAlles();
         }
       }
