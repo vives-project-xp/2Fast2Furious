@@ -82,6 +82,17 @@ Hieronder staan de architectuur documenten voor het project.
 
 ## Prototypes
 
-In de map [afbeeldingen](./Afbeeldingen/) kan je enkele foto's vinden van enkele prototype's. Er is een afbeelding te vinden van een amazon variant waar onze eigen rc wagen op gebaseerd is. Er zijn ook schetsen te vinden over hoe we componenten plaatsen op onze rc wagen (ook te afmetingen zijn hierop te vinden).  
+In de map [afbeeldingen](./Afbeeldingen/) kan je enkele foto's vinden van enkele prototype's. Er is een afbeelding te vinden van een amazon variant waar onze eigen rc wagen op gebaseerd is. Er zijn ook schetsen te vinden over hoe we componenten plaatsen op onze rc wagen (ook te afmetingen zijn hierop te vinden). 
+
+## Mechanisch ontwerp
+
+Hier komt hoe we alles zullen bevestigen in de tank / rc wagen.
+Er is een inkeping in de 3D print van de grondplaat, de vier motoren en alle andere componenten worden hier in bevestigd. De vier motoren worden vastgemaakt met lijm zodat vermeden wordt dat deze nog kunnen bewegen. Voor de andere componenten is het zien of ze stevig genoeg vast zitten of dat ze ook moeten steviger vastgemaakt worden.
+
+### Mogelijke opties voor het bevestigen van de servomotor en laser transmitter
+
+1. Servomotor bevestigen aan de 3D print met lijm, laser transmitter bevestigen aan de servo-arm ook met lijm.
+2. Servomotor bevestigen via schroeven (indien mogelijk) aan de 3D print, hier moet er dan ook rekening mee gehouden worden in de 3D print. De laser transmitter bevestigen aan de arm met schroeven als dit een mogelijkheid is.
+3. 3D geprint houdertje voor zowel de servomotor als voor de laser transmitter. Als we deze optie kiezen moet de 3D print van de kop opnieuw gedesigned worden.
 
 ⬅️ [Terug naar overzicht](../README.md#Inhoud)
