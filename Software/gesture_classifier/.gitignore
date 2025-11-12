@@ -1,0 +1,22 @@
+# Edge Impulse generated files (proprietary license)
+src/edge-impulse-sdk/
+src/model-parameters/
+src/tflite-model/
+src/Gesture-Classifier_inferencing.h
+
+# Arduino build files
+*.elf
+*.hex
+*.bin
+*.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
