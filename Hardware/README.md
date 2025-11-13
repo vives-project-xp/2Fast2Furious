@@ -94,7 +94,14 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 
 ## Kalibratie
 
-TBA  
+## Target
+
+De target bevat een [Laser-receiver](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html)
+
+![ontvanger](../Documentatie/Afbeeldingen/otronic-5v-ontvanger-module-voor-laser-diode.webp) 
+
+We hebben hiervoor een behuizing gemaakt die dan de target zal voorstellen
+![print](./target/prototype_target.png)
 
 ⬅️ [Terug naar overzicht](../README.md#Inhoud)
 
