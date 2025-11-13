@@ -58,7 +58,7 @@ void loop() {
       features[samplesRead * numAxes + 4] = gY;
       features[samplesRead * numAxes + 5] = gZ;
       
-      samplesRead++;
+      samplesRead++; 
 
       // When all samples are collected, run inference
       if (samplesRead == numSamples) {
