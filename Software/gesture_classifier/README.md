@@ -72,10 +72,147 @@ arduino-cli monitor -p <PORT> --fqbn arduino:mbed_nano:nano33ble
 
 Om de gesture_classifier model te maken heb ik volgende stappen gevolgd:
 
-1. **Data verzamelen**: Handgebaren data werd verzameld met behulp van een microcontroller en Edge impulse platform.
-2. **Data omzetten**: De data die ik via edge impulse had verzameld werd in CBOR formaat opgeslagen. Het script `convert_cbor_to_csv.py` werd gebruikt om deze data om te zetten naar CSV formaat voor verdere verwerking.
-3. **Model trainen**: Het script `train_tflite_model.py` werd gebruikt om het TensorFlow Lite model te trainen met de CSV data. Hierbij werden verschillende parameters ingesteld zoals het aantal epochs en de batch size.
-4. **Model implementeren**: Het getrainde model werd vervolgens geïmplementeerd op een microcontroller met behulp van de Arduino code in `gesture_classifier.ino`
+### 1. Data verzamelen via Edge Impulse
+
+Handgebaren data werd verzameld met behulp van een microcontroller en Edge Impulse platform:
+
+- Ga naar [Edge Impulse](https://edgeimpulse.com) en maak een nieuw project aan
+- Verbind je Arduino Nano 33 BLE Sense Rev2 met Edge Impulse via de Data Forwarder of Edge Impulse CLI
+- Maak labels aan voor elk gebaar (bijvoorbeeld "punch", "circle", "idle")
+- Verzamel meerdere samples per gebaar (minimaal 30-50 per klasse, meer is beter)
+  - Voer elk gebaar meerdere keren uit met verschillende snelheden en orientaties
+  - Zorg voor consistentie in de duur van elk gebaar (bijvoorbeeld 2 seconden)
+- Splits je data automatisch of handmatig in training (80%) en testing (20%) sets
+
+### 2. Data exporteren uit Edge Impulse
+
+Nadat je genoeg data hebt verzameld, exporteer je de dataset:
+
+- In Edge Impulse Studio ga naar "Dashboard" of "Data acquisition"
+- Klik op het export icoon of gebruik het menu om "Export" te selecteren
+- Kies voor "Export as raw features" of de ingestion data optie
+- Download de ZIP file en pak deze uit
+
+De uitgepakte folder structuur moet er als volgt uitzien:
+
+```folder
+gesture-classifier-export/
+├── info.labels                          # JSON file met label mapping
+├── training/                            # Training data
+│   ├── circle.69md0drd.ingestion-...cbor
+│   ├── circle.69md0nfj.ingestion-...cbor
+│   ├── punch.69me1abc.ingestion-...cbor
+│   ├── punch.69me2def.ingestion-...cbor
+│   └── ...
+└── testing/                             # Testing data
+    ├── circle.69me5pve.ingestion-...cbor
+    ├── punch.69me6ov4.ingestion-...cbor
+    └── ...
+```
+
+Het `info.labels` bestand bevat de mapping tussen bestandsnamen en labels:
+
+```json
+{
+  "version": 1,
+  "files": [
+    {
+      "name": "circle.69md0drd",
+      "label": {
+        "type": "label",
+        "label": "circle"
+      }
+    },
+    {
+      "name": "punch.69me1abc",
+      "label": {
+        "type": "label",
+        "label": "punch"
+      }
+    }
+  ]
+}
+```
+
+### 3. Data omzetten naar CSV
+
+Gebruik het `convert_cbor_to_csv.py` script om de CBOR bestanden om te zetten naar een CSV bestand:
+
+```bash
+python convert_cbor_to_csv.py
+```
+
+Het script:
+
+- Leest automatisch de `gesture-classifier-export/` folder
+- Gebruikt `info.labels` om de juiste labels toe te wijzen
+- Converteert alle CBOR bestanden naar een enkele `dataset.csv`
+- De CSV bevat kolommen: `axis0`, `axis1`, ..., `axis5` (voor 6-axis IMU data), `label`, `filename`, `timestep`, `split`
+
+Controleer de output:
+
+```bash
+✅ Saved dataset.csv with shape: (15234, 10)
+```
+
+### 4. Model trainen
+
+Train het TensorFlow Lite model met het `train_tflite_model.py` script:
+
+```bash
+python train_tflite_model.py
+```
+
+Het training proces:
+
+- Laadt `dataset.csv` en extraheert statistische features (mean, std, min, max) per opname
+- Normaliseert de data en slaat normalisatie parameters op in `model_params.npz`
+- Bouwt een neuraal netwerk (input → 32 neurons → 16 neurons → output classes)
+- Traint gedurende 50 epochs met een 80/20 train/test split
+- Converteert het model naar TensorFlow Lite formaat met optimalisaties
+- Genereert een C header file voor Arduino
+
+Output bestanden:
+
+- `gesture_model.tflite` - TensorFlow Lite model (voor Python inferentie of debugging)
+- `gesture_model.h` - C header met model als byte array (voor Arduino)
+- `labels.json` - Label mapping (bijvoorbeeld `["circle", "punch"]`)
+- `model_params.npz` - Normalisatie parameters (mean, std)
+
+Voorbeeld training output:
+
+```bash
+Epoch 50/50
+12/12 [==============================] - 0s 2ms/step - loss: 0.0234 - accuracy: 0.9896 - val_loss: 0.1123 - val_accuracy: 0.9583
+
+Test Accuracy: 0.9500
+✅ Saved gesture_model.tflite
+✅ Saved gesture_model.h
+```
+
+### 5. Model implementeren op microcontroller
+
+Kopieer de gegenereerde bestanden naar je Arduino project:
+- `gesture_model.h` → include in je Arduino sketch
+- `labels.json` → (optioneel) om label namen te tonen in plaats van indices
+- `model_params.npz` → bevat normalisatie parameters (deze moet je handmatig in code hardcoden)
+
+Implementeer de code in `gesture_classifier.ino`:
+- Laad het model uit `gesture_model.h`
+- Verzamel IMU data in een window buffer
+- Bereken dezelfde statistische features als tijdens training
+- Normaliseer met dezelfde mean/std waarden
+- Voer inferentie uit en selecteer het gebaar met hoogste waarschijnlijkheid
+- Voer acties uit op basis van het gedetecteerde gebaar
+
+### Tips voor betere resultaten
+
+- **Meer data**: Verzamel minimaal 30-50 samples per gebaar voor goede generalisatie
+- **Data variatie**: Voer gebaren uit met verschillende snelheden, hoeken en startposities
+- **Balanced dataset**: Zorg dat elke klasse ongeveer evenveel samples heeft
+- **Idle klasse**: Voeg een "idle" of "unknown" klasse toe voor wanneer geen gebaar wordt uitgevoerd
+- **Threshold tuning**: Experimenteer met confidence thresholds (bijv. alleen accepteren als >70% zeker)
+- **Real-time testing**: Test het model op de microcontroller met nieuwe gebaren die niet in de training set zaten
 
 ## Gebruikte hardware
 
