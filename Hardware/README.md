@@ -6,6 +6,7 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 
 1. [De hardware van de auto](#de-hardware-van-de-auto)
 2. [Handschoen Controller](#hand-controller)
+3. [Target](#target)
 
 ## De hardware van de auto
 
@@ -21,9 +22,20 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 1. Servo SG90 Micro
 2. Laser diode
 
-![Schema van de auto ](./Auto/sketch_auto_electronics_2.png)
 
-*Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2*
+### Elektrische schema's
+
+Er is de mogelijkheid om te kiezen tussen twee schakelingen.
+
+1. Vaste snelheidsregeling: De auto hanteert een constante snelheid zodra er input wordt gegeven. Door het verminderde aantal benodigde signaalkabels blijft er capaciteit op de microcontroller over voor extra sensoren of modules.
+![schema speedcontroller](./Auto/Schema_Auto_NonSpeedControlled.png)
+
+*Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2: Vaste snelheidsregeling*
+
+2. Variabele snelheidsregeling: De auto accelereert evenredig aan de mate van invoer. Om dit te realiseren is er echter meer bekabeling nodig tussen de motordrivers en de microcontroller.
+![schema speedcontroller](./Auto/Schema_Auto.png)
+
+*Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2: Variabele snelheidsregeling*
 
 
 
