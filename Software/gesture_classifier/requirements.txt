@@ -1,0 +1,6 @@
+tensorflow>=2.10,<3
+numpy>=1.23,<2
+pandas>=1.5,<2
+scikit-learn>=1.1,<2
+cbor2>=5.2
+pyserial>=3.5
