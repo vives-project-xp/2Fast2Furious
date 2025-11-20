@@ -154,27 +154,10 @@ void loop() {
     }
   }
 
-  // Extract features
   float features[NUM_FEATURES];
   extractFeatures(features);
   
-  // Debug: Print raw features
-  Serial.println("Raw features:");
-  for (int i = 0; i < NUM_FEATURES; i++) {
-    Serial.print(features[i], 4);
-    Serial.print(" ");
-    if ((i + 1) % 4 == 0) Serial.println();
-  }
-  
   normalizeFeatures(features);
-  
-  // Debug: Print normalized features
-  Serial.println("Normalized features:");
-  for (int i = 0; i < NUM_FEATURES; i++) {
-    Serial.print(features[i], 4);
-    Serial.print(" ");
-    if ((i + 1) % 4 == 0) Serial.println();
-  }
 
   // Copy features to input tensor
   for (int i = 0; i < NUM_FEATURES; i++) {
