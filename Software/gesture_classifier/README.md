@@ -28,9 +28,16 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-3. Installeer Arduino CLI (als je dit nog niet hebt):
+3. Installeer arduino libraries in arduino IDE of via Arduino CLI:
 
-   - Download Arduino CLI van [arduino.cc/en/software](https://arduino.cc/en/software) of installeer via package manager:
+    Arduino IDE:
+    Installeer volgende libraries in de Arduino IDE via Library Manager (Sketch -> Include Library -> Manage Libraries...):
+    - Arduino_BMI270_BMM150
+    - Chirale_TensorFlowLite
+
+    Arduino CLI:
+
+   - Download Arduino CLI van [arduino.cc/en/software](https://arduino.cc/en/software) of installeer via package manager indien je deze niet hebt:
 
    ```bash
    # Windows (via winget)
@@ -52,12 +59,13 @@ pip install -r requirements.txt
    arduino-cli core update-index
    arduino-cli core install arduino:mbed_nano
    arduino-cli lib install "Arduino_BMI270_BMM150"
-   arduino-cli lib install "Arduino_TensorFlowLite"
+   arduino-cli lib install "Chirale_TensorFlowLite"
    ```
 
 4. Compile en flash de Arduino code `gesture_classifier.ino` naar je microcontroller met behulp van de Arduino IDE of Arduino CLI.
 
 ```bash
+cd gesture_classifier
 arduino-cli compile --fqbn arduino:mbed_nano:nano33ble gesture_classifier
 arduino-cli upload -p <PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
 ```
