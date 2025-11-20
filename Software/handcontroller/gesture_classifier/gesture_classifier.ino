@@ -33,6 +33,17 @@ alignas(16) uint8_t tensor_arena[kTensorArenaSize];
 // Buffers for sensor data
 float sample_buffer[NUM_SAMPLES][NUM_AXES];
 int samples_read = 0;
+// Non-blocking sampling state
+bool samplingActive = false;
+unsigned long nextSampleMs = 0;
+const unsigned long sampleIntervalMs = 10; // ms between samples
+unsigned long nextCycleMs = 0; // cooldown between gesture cycles
+const unsigned long cycleCooldownMs = 500; // wait after inference before next sampling run
+// Logging control: how many xi/yi samples to print per full buffer
+const int LOG_SAMPLES = 5; // number of samples to print per cycle (approx)
+const int LOG_INTERVAL = (NUM_SAMPLES + LOG_SAMPLES - 1) / LOG_SAMPLES; // ceil division
+// Track whether the last detected gesture was idle (index 2 in GESTURES)
+bool lastDetectedIsIdle = true;
 
 // Preprocessing params (from model_params.npz)
 float feature_mean[NUM_FEATURES] = {
@@ -128,16 +139,70 @@ void normalizeFeatures(float features[NUM_FEATURES]) {
   }
 }
 
+// Replicates getCommand from TEST_CODES/Hand/Hand.ino
+String getCommand(int16_t xi, int16_t yi) {
+  int singleThreshold = 700;     // Voor enkelvoudige richtingen
+  int diagonalThreshold = 300;   // Voor diagonale richtingen
+
+  // Eerst diagonalen checken (lagere drempel)
+  // NOTE: xi axis is inverted (forward/backwards swapped)
+  if (xi > diagonalThreshold && yi > diagonalThreshold) {
+    return "BL"; // was FL
+  } else if (xi > diagonalThreshold && yi < -diagonalThreshold) {
+    return "BR"; // was FR
+  } else if (xi < -diagonalThreshold && yi > diagonalThreshold) {
+    return "FL"; // was BL
+  } else if (xi < -diagonalThreshold && yi < -diagonalThreshold) {
+    return "FR"; // was BR
+  }
+  // Enkelvoudige richtingen checken (hogere drempel)
+  else if (xi > singleThreshold) {
+    return "B"; // inverted
+  } else if (xi < -singleThreshold) {
+    return "F"; // inverted
+  } else if (yi > singleThreshold) {
+    return "L";
+  } else if (yi < -singleThreshold) {
+    return "R";
+  } 
+  else {
+    return "S";
+  }
+}
+
 void loop() {
   float aX, aY, aZ, gX, gY, gZ;
+  int16_t xi = 0, yi = 0;
+  unsigned long now = millis();
 
-  // Collect samples
-  while (samples_read < NUM_SAMPLES) {
+  // Start a new sampling run if not active and cooldown passed
+  if (!samplingActive && now >= nextCycleMs) {
+    samplingActive = true;
+    samples_read = 0;
+    nextSampleMs = now; // start immediately
+  }
+
+  // While sampling is active, take samples at scheduled intervals (non-blocking)
+  if (samplingActive && now >= nextSampleMs) {
     if (IMU.accelerationAvailable() && IMU.gyroscopeAvailable()) {
       IMU.readAcceleration(aX, aY, aZ);
       IMU.readGyroscope(gX, gY, gZ);
 
-      // Convert acceleration from g to m/s² to match training data (1g = 9.80665 m/s²)
+      // Calculate xi and yi from acceleration (convert to milli-g)
+      xi = (int16_t)(aX * 1000);
+      yi = (int16_t)(aY * 1000);
+
+      // Log xi/yi for a subset of samples to avoid flooding serial output
+      // This logs approximately LOG_SAMPLES values spread across NUM_SAMPLES
+      if ((samples_read % LOG_INTERVAL) == 0) {
+        // Only log commands when the last detected gesture was idle
+        if (lastDetectedIsIdle) {
+          String cmd = getCommand(xi, yi);
+          Serial.println(cmd);
+        }
+      }
+
+      // Store converted values into the sample buffer (as before)
       sample_buffer[samples_read][0] = aX * 9.80665;
       sample_buffer[samples_read][1] = aY * 9.80665;
       sample_buffer[samples_read][2] = aZ * 9.80665;
@@ -146,55 +211,57 @@ void loop() {
       sample_buffer[samples_read][5] = gZ;
 
       samples_read++;
+      nextSampleMs += sampleIntervalMs; // schedule next sample
+    } else {
+      // IMU data not ready yet — try again shortly
+      nextSampleMs = now + 1;
     }
   }
 
-  float features[NUM_FEATURES];
-  extractFeatures(features);
-  
-  normalizeFeatures(features);
+  // If a full buffer has been collected, process it (non-blocking across loop iterations)
+  if (samples_read >= NUM_SAMPLES) {
+    float features[NUM_FEATURES];
+    extractFeatures(features);
+    normalizeFeatures(features);
 
-  // Copy features to input tensor
-  for (int i = 0; i < NUM_FEATURES; i++) {
-    input->data.f[i] = features[i];
-  }
+    // Copy features to input tensor
+    for (int i = 0; i < NUM_FEATURES; i++) {
+      input->data.f[i] = features[i];
+    }
 
-  // Run inference
-  TfLiteStatus invoke_status = interpreter->Invoke();
-  if (invoke_status != kTfLiteOk) {
-    Serial.println("ERROR: Invoke failed");
+    // Run inference
+    TfLiteStatus invoke_status = interpreter->Invoke();
+    if (invoke_status != kTfLiteOk) {
+      Serial.println("ERROR: Invoke failed");
+      // Prepare for next run
+      samples_read = 0;
+      samplingActive = false;
+      nextCycleMs = millis() + cycleCooldownMs;
+      return;
+    }
+
+    // Find highest confidence class
+    float max_score = output->data.f[0];
+    int max_index = 0;
+    for (int i = 1; i < NUM_CLASSES; i++) {
+      if (output->data.f[i] > max_score) {
+        max_score = output->data.f[i];
+        max_index = i;
+      }
+    }
+
+    // Print result with confidence
+    Serial.print("Detected: ");
+    Serial.print(GESTURES[max_index]);
+    Serial.print(" (");
+    Serial.print(max_score * 100.0, 1);
+    Serial.println("%)");
+
+    // Prepare for next gesture: enter cooldown and stop sampling until cooldown expires
     samples_read = 0;
-    return;
+    samplingActive = false;
+    // Update lastDetectedIsIdle so per-sample logging only happens after an idle detection
+    lastDetectedIsIdle = (max_index == 2);
+    nextCycleMs = millis() + cycleCooldownMs;
   }
-
-  // Find highest confidence class
-  float max_score = output->data.f[0];
-  int max_index = 0;
-  for (int i = 1; i < NUM_CLASSES; i++) {
-    if (output->data.f[i] > max_score) {
-      max_score = output->data.f[i];
-      max_index = i;
-    }
-  }
-
-  // Print result with all class scores for debugging
-  Serial.print("Detected: ");
-  Serial.print(GESTURES[max_index]);
-  Serial.print(" (");
-  Serial.print(max_score * 100.0, 1);
-  Serial.println("%)");
-  
-  // Print all scores for debugging
-  Serial.print("  Scores: ");
-  for (int i = 0; i < NUM_CLASSES; i++) {
-    Serial.print(GESTURES[i]);
-    Serial.print("=");
-    Serial.print(output->data.f[i] * 100.0, 1);
-    Serial.print("% ");
-  }
-  Serial.println();
-
-  // Reset for next gesture
-  samples_read = 0;
-  delay(500);
 }
