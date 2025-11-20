@@ -2,12 +2,12 @@
 // Uses Arduino Nano 33 BLE Rev.2 with BMI270/BMM150 IMU
 
 #include <Arduino_BMI270_BMM150.h>
-#include <TensorFlowLite.h>
-#include <tensorflow/lite/micro/all_ops_resolver.h>
-#include <tensorflow/lite/micro/micro_error_reporter.h>
-#include <tensorflow/lite/micro/micro_interpreter.h>
-#include <tensorflow/lite/schema/schema_generated.h>
-#include <tensorflow/lite/version.h>
+#include <Chirale_TensorFlowLite.h>
+#include "tensorflow/lite/micro/all_ops_resolver.h"
+#include "tensorflow/lite/micro/micro_interpreter.h"
+#include "tensorflow/lite/micro/micro_log.h"
+#include "tensorflow/lite/micro/system_setup.h"
+#include "tensorflow/lite/schema/schema_generated.h"
 
 #include "gesture_model.h"
 
@@ -25,7 +25,6 @@ const tflite::Model* model = nullptr;
 tflite::MicroInterpreter* interpreter = nullptr;
 TfLiteTensor* input = nullptr;
 TfLiteTensor* output = nullptr;
-tflite::ErrorReporter* error_reporter = nullptr;
 
 // Memory arena for TFLite
 constexpr int kTensorArenaSize = 60 * 1024;
@@ -64,10 +63,6 @@ void setup() {
   Serial.print(IMU.accelerationSampleRate());
   Serial.println(" Hz");
 
-  // Set up error reporter
-  static tflite::MicroErrorReporter micro_error_reporter;
-  error_reporter = &micro_error_reporter;
-
   // Load TFLite model
   model = tflite::GetModel(gesture_model);
   if (model->version() != TFLITE_SCHEMA_VERSION) {
@@ -78,7 +73,7 @@ void setup() {
   // Initialize TFLite interpreter
   static tflite::AllOpsResolver resolver;
   static tflite::MicroInterpreter static_interpreter(
-    model, resolver, tensor_arena, kTensorArenaSize, error_reporter);
+    model, resolver, tensor_arena, kTensorArenaSize);
   interpreter = &static_interpreter;
 
   // Allocate tensors
