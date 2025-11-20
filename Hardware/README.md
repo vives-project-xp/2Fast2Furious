@@ -51,10 +51,11 @@ De controller maakt gebruik van een Arduino Nano 33 BLE Sense Rev2. Deze microco
 
 1. Inertial Measurement Unit (IMU): De interne accelerometer en gyroscoop lezen de pitch (voor/achterwaartse kanteling) en de roll (zijwaartse kanteling) data om de oriëntatie van de hand in real-time te bepalen.
 2. Bluetooth Low Energy (BLE) Module: Voor draadloze communicatie met de RC-car.
+3. Magic Wand/Tensorflow Gesture Recognition als uitbreiding. Laat toe te schakelen tussen verschillende modussen of functies van de controller zonder extra knoppen te monteren/de andere hand te moeten gebruiken.
 
 ### Montage
 
-De Arduino wordt gemonteerd op een 3D-geprintte palm-bracelet dat ook de 3x AAA batterijhouder huist. Zie de .stl-files voor meer info.
+De Arduino wordt gemonteerd op een 3D-geprintte palm-bracelet dat ook de 3x AAA batterijhouder power supply huist. Zie de .stl-files voor meer info.
 
 ### Besturing
 
@@ -71,15 +72,9 @@ De bewegingsdata van de IMU wordt in de Arduino firmware vertaald naar digitale 
 | Turret | Kantelen naar voren | Turret mikt hoger (servo) |
 | Turret | Kantelen naar achteren | Turret mikt lager (servo) |
 
-### Drukknop
-
-Een drukknop wordt op de Arduino gemonteerd en dient als een toggle/schakelaar tussen de modussen.
-
-1. Car Modus: Controller stuurt de mobiliteit van de car.
-2. Turret Modus: Controller stuurt de vector van de turret en draait de auto.
-
 ### Turret Modus
 
+A.d.h.v. Gesture Recognition kan de user schakelen tussen verschillende modussen.
 In Turret Modus veranderd de interpretatie van de IMU-data:
 
 Zijwaartse kanteling wordt gebruikt om de car op zijn vaste as te laten roteren, zoals in tank-besturing.
@@ -94,15 +89,13 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 ### Onderdelen Hand controller
 1. Arduino Nano 33 BLE Sense REV2
 
-2. drukknop(pen)
+2. 3x AAA batterijhouder
 
-3. 3x AAA batterijhouder
-
-4. Bracelet behuizing en straps
+3. Bracelet behuizing en straps
 
 #### Schema:
 
-![Schema van de hand controller ](./Handschoen/handschoenCircuit.png)
+![Schema van de hand controller ](./Handschoen/handControllerCircuitv2.png)
 
 ## Kalibratie
 
