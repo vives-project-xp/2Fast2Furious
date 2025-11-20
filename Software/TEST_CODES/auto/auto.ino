@@ -1,24 +1,25 @@
 #include <ArduinoBLE.h>
+#include <Servo.h>
+
+Servo myservo;
+
+int pos = 0;
 
 // Motor 1
 #define M1_IN1 2
 #define M1_IN2 3
-#define M1_EN  4
 
 // Motor 2
 #define M2_IN1 5
 #define M2_IN2 6 
-#define M2_EN  9
 
 // Motor 3
 #define M3_IN1 10
 #define M3_IN2 11
-#define M3_EN  12
 
 // Motor 4
 #define M4_IN1 13
 #define M4_IN2 8
-#define M4_EN  A0
 
 // BLE
 BLEDevice peripheral;
@@ -27,85 +28,80 @@ bool connected = false;
 String prevCommand = "";
 int snelheid = 200;
 
-void motorVooruit(int in1, int in2, int en, int snelheid) {
+void motorVooruit(int in1, int in2) {
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(en, snelheid);
 }
 
-void motorAchteruit(int in1, int in2, int en, int snelheid) {
+void motorAchteruit(int in1, int in2,) {
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(en, snelheid);
 }
 
-void motorStop(int in1, int in2, int en) {
+void motorStop(int in1, int in2) {
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
-  analogWrite(en, 0);
 }
 
-void vooruit(int s) {
-  motorVooruit(M1_IN1, M1_IN2, M1_EN, s);
-  motorVooruit(M2_IN1, M2_IN2, M2_EN, s);
-  motorVooruit(M3_IN1, M3_IN2, M3_EN, s);
-  motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
+void vooruit() {
+  motorVooruit(M1_IN1, M1_IN2, s);
+  motorVooruit(M2_IN1, M2_IN2, s);
+  motorVooruit(M3_IN1, M3_IN2, s);
+  motorVooruit(M4_IN1, M4_IN2, s);
 }
-void achteruit(int s) {
-  motorAchteruit(M1_IN1, M1_IN2, M1_EN, s);
-  motorAchteruit(M2_IN1, M2_IN2, M2_EN, s);
-  motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
-  motorAchteruit(M4_IN1, M4_IN2, M4_EN, s);
+void achteruitint ()) {
+  motorAchteruit(M1_IN1, M1_IN2, s);
+  motorAchteruit(M2_IN1, M2_IN2, s);
+  motorAchteruit(M3_IN1, M3_IN2, s);
+  motorAchteruit(M4_IN1, M4_IN2, s);
 }
-void links(int s) {
-  motorAchteruit(M1_IN1, M1_IN2, M1_EN, s);
-  motorVooruit(M2_IN1, M2_IN2, M2_EN, s);
-  motorVooruit(M3_IN1, M3_IN2, M3_EN, s);
-  motorAchteruit(M4_IN1, M4_IN2, M4_EN, s);
+void links() {
+  motorAchteruit(M1_IN1, M1_IN2, s);
+  motorVooruit(M2_IN1, M2_IN2, s);
+  motorVooruit(M3_IN1, M3_IN2, s);
+  motorAchteruit(M4_IN1, M4_IN2, s);
 }
-void rechts(int s) {
-  motorVooruit(M1_IN1, M1_IN2, M1_EN, s);
-  motorAchteruit(M2_IN1, M2_IN2, M2_EN, s);
-  motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
-  motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
-}
-
-void draaiCW(int s) {  // met de klok mee
-  motorVooruit(M1_IN1, M1_IN2, M1_EN, s);
-  motorAchteruit(M2_IN1, M2_IN2, M2_EN, s);
-  motorVooruit(M3_IN1, M3_IN2, M3_EN, s);
-  motorAchteruit(M4_IN1, M4_IN2, M4_EN, s);
+void rechts() {
+  motorVooruit(M1_IN1, M1_IN2, s);
+  motorAchteruit(M2_IN1, M2_IN2, s);
+  motorAchteruit(M3_IN1, M3_IN2, s);
+  motorVooruit(M4_IN1, M4_IN2, s);
 }
 
-void draaiCCW(int s) { // tegen de klok in
-  motorAchteruit(M1_IN1, M1_IN2, M1_EN, s);
-  motorVooruit(M2_IN1, M2_IN2, M2_EN, s);
-  motorAchteruit(M3_IN1, M3_IN2, M3_EN, s);
-  motorVooruit(M4_IN1, M4_IN2, M4_EN, s);
+void draaiCW() {  // met de klok mee
+  motorVooruit(M1_IN1, M1_IN2, s);
+  motorAchteruit(M2_IN1, M2_IN2, s);
+  motorVooruit(M3_IN1, M3_IN2, s);
+  motorAchteruit(M4_IN1, M4_IN2, s);
+}
+
+void draaiCCW() { // tegen de klok in
+  motorAchteruit(M1_IN1, M1_IN2, s);
+  motorVooruit(M2_IN1, M2_IN2, s);
+  motorAchteruit(M3_IN1, M3_IN2, s);
+  motorVooruit(M4_IN1, M4_IN2, s);
 }
 void stopAlles() {
-  motorStop(M1_IN1, M1_IN2, M1_EN);
-  motorStop(M2_IN1, M2_IN2, M2_EN);
-  motorStop(M3_IN1, M3_IN2, M3_EN);
-  motorStop(M4_IN1, M4_IN2, M4_EN);
+  motorStop(M1_IN1, M1_IN2);
+  motorStop(M2_IN1, M2_IN2);
+  motorStop(M3_IN1, M3_IN2);
+  motorStop(M4_IN1, M4_IN2);
 }
 
 void setup() {
   Serial.begin(9600);
 
+  myservo.attach(9);
+
   // Motorpinnen
   pinMode(M1_IN1, OUTPUT);
   pinMode(M1_IN2, OUTPUT);
-  pinMode(M1_EN, OUTPUT);
   pinMode(M2_IN1, OUTPUT);
   pinMode(M2_IN2, OUTPUT);
-  pinMode(M2_EN, OUTPUT);
   pinMode(M3_IN1, OUTPUT);
   pinMode(M3_IN2, OUTPUT);
-  pinMode(M3_EN, OUTPUT);
   pinMode(M4_IN1, OUTPUT);
   pinMode(M4_IN2, OUTPUT);
-  pinMode(M4_EN, OUTPUT);
 
   // BLE setup
   if (!BLE.begin()) {
@@ -162,15 +158,15 @@ void loop() {
         if (cmd != prevCommand) {   
           prevCommand = cmd;
       
-          if (cmd == "F") vooruit(snelheid);
-          else if (cmd == "B") achteruit(snelheid);
-          else if (cmd == "L") links(snelheid);
-          else if (cmd == "R") rechts(snelheid);
+          if (cmd == "F") vooruit();
+          else if (cmd == "B") achteruit();
+          else if (cmd == "L") links();
+          else if (cmd == "R") rechts();
           else if (cmd == "S") stopAlles();
           else if (cmd == "f") Serial.println("Loop Omhoog");
           else if (cmd == "b") Serial.println("Loop Omlaag");
-          else if (cmd == "l") draaiCCW(snelheid);
-          else if (cmd == "r") draaiCW(snelheid);
+          else if (cmd == "l") draaiCCW();
+          else if (cmd == "r") draaiCW();
           else stopAlles();
         }
       }
