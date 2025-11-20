@@ -32,3 +32,11 @@ Hoogte: 2,7cm
 
 <img src="../Documentatie/Afbeeldingen/driver_board.png" 
 alt="Driver" width="400">
+
+
+## Laser Receiver
+
+zie afbeelding
+
+<img src="./target/afmeting_target.png" 
+alt="Driver" width="400">

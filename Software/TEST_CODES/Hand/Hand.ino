@@ -96,10 +96,10 @@ void loop() {
       int16_t yi = (int16_t)(y * 1000);
       //int16_t zi = (int16_t)(z * 1000);
 
-      if(defaultMode) {
+      //if(defaultMode) {
         String currentCommand = getCommand(xi, yi);
 
-      }
+      //}
       
       if (currentCommand != prevCommand) {
         commandCharacteristic.writeValue(currentCommand);
