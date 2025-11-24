@@ -1,36 +1,16 @@
-# Software
+## Software
 
-Deze map bevat alle software bestanden en code voor het project.
+In deze map vind je alle software voor dit project. Dit omvat de code voor de auto, de handcontroller en de targets.
 
-## Inhoud
+### Bestandsstructuur
+* **MainCode:** Hierin is de volledige, uiteindelijke broncode te vinden.
+* **Test Codes:** Er zijn diverse scripts geschreven om specifieke onderdelen los te testen, zoals de BLE-verbinding of de motoraansturing.
 
-1. [De software van de auto](./Auto/README.md): De software die op de Arduino Nano 33 BLE Sense Rev2 van de auto draait.
-2. [Handschoen Controller](./handcontroller/README.md): De software die op de Arduino Nano 33 BLE Sense Rev2 van de handschoen draait.
-3. [testen van componenten](./testen_componenten/README.md): De software voor het testen van de verschillende hardware componenten.
+### Gebruikte Libraries
+De meeste programma's maken gebruik van standaard Arduino-libraries. Hieronder vind je een overzicht van de belangrijkste:
 
-
-## Libraries
-Nodige libraries voor dit project :
- - Arduino_BMI270_BMM150
- - ArduinoBLE
-
-## TODO
-
-- Knop aan Hand controller Code of hand gebaren 
-- Code servo + normaale motoren + lazer combineren
-
-
-## Auto moet kunnen
-
-- Vooruit achteruit links rechts ✅ 
-- zij richtingen ✅
-- ter plekke draaien ✅
-- andere mode ontvangen ✅
-- Lazer "schieten" ✅
-- Lazer naar boven en beneden bewegen. ✅
-
-## Hand moet nog kunnen
- - veranderen van mode ❌
- - signaal schieten verstuuren ❌
-
-⬅️ [Terug naar overzicht](../README.md#Inhoud)
+| Library | Functie |
+| :--- | :--- |
+| `ArduinoBLE.h` | Voor het opzetten en beheren van de Bluetooth Low Energy (BLE) verbinding. |
+| `Servo.h` | Voor het eenvoudig aansturen van de servomotor. |
+| `Arduino_BMI270_BMM150.h` | Voor het uitlezen van sensor- en gyroscoopdata. |

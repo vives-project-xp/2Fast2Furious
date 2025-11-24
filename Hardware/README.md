@@ -16,11 +16,13 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 2. 2x L298N motor driver
 3. 4x TT-Motor
 4. 9V Batterij
+5. Servo SG90 Micro 
+6. Lazer diode
 
 ### Tank gedeelte
 
 1. Servo SG90 Micro
-2. Laser diode
+2. Ontvanger Module voor Laser Diode
 
 
 ### Elektrische schema's
