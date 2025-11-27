@@ -6,10 +6,9 @@ int pos = 90;       // startpositie servo
 int servoState = 0; // 0 = stop, 1 = omhoog, -1 = omlaag
 unsigned long lastServoMove = 0;
 
-#define SPEED_PIN 4 // De enige overgebleven pin voor PWM (snelheidsregeling)
-const int SNELHEID_MAX = 255; // Maximale snelheid voor vooruit/achteruit/links/rechts
+#define SPEED_PIN 4             // De enige overgebleven pin voor PWM (snelheidsregeling)
+const int SNELHEID_MAX = 255;   // Maximale snelheid voor vooruit/achteruit/links/rechts
 const int SNELHEID_DRAAI = 120; // Lagere snelheid voor draaiCW/draaiCCW
-
 
 // Motor 1
 #define M1_IN1 2
@@ -34,8 +33,8 @@ bool connected = false;
 String prevCommand = "";
 bool tankmode = false;
 
-
-void setMotorSpeed(int speed_value) {
+void setMotorSpeed(int speed_value)
+{
   analogWrite(SPEED_PIN, speed_value);
 }
 
@@ -56,7 +55,6 @@ void motorStop(int in1, int in2)
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
 }
-
 
 void vooruit()
 {
@@ -91,9 +89,8 @@ void rechts()
   motorVooruit(M4_IN1, M4_IN2);
 }
 
-
 void draaiCW()
-{ 
+{
   setMotorSpeed(SNELHEID_DRAAI);
   motorVooruit(M1_IN1, M1_IN2);
   motorAchteruit(M2_IN1, M2_IN2);
@@ -107,7 +104,7 @@ void ChangeState()
 }
 
 void draaiCCW()
-{ 
+{
   setMotorSpeed(SNELHEID_DRAAI);
   motorAchteruit(M1_IN1, M1_IN2);
   motorVooruit(M2_IN1, M2_IN2);
@@ -117,8 +114,8 @@ void draaiCCW()
 
 void stopAlles()
 {
-  setMotorSpeed(0); 
-  
+  setMotorSpeed(0);
+
   motorStop(M1_IN1, M1_IN2);
   motorStop(M2_IN1, M2_IN2);
   motorStop(M3_IN1, M3_IN2);
@@ -132,8 +129,7 @@ void setup()
   myservo.attach(9);
 
   pinMode(SPEED_PIN, OUTPUT);
-  setMotorSpeed(0); 
-
+  setMotorSpeed(0);
 
   // Motorpinnen
   pinMode(M1_IN1, OUTPUT);
@@ -162,8 +158,9 @@ void loop()
   if (!connected)
   {
     BLEDevice found = BLE.available();
+    Serial.println("Searching nano");
 
-    if (found && found.localName() == "NanoController")
+    if (found && found.localName() == "NanoClassifier")
     {
       Serial.println("Peripheral gevonden, verbinden...");
       BLE.stopScan();
@@ -212,25 +209,42 @@ void loop()
 
       if (cmd != prevCommand)
       {
+        Serial.println(tankmode);
         prevCommand = cmd;
 
         if (cmd == "F" && tankmode == false)
+        {
           vooruit();
           Serial.println("Vooruit");
-        else if(cmd == "C")
+          servoState = 0;
+        }
+        else if (cmd == "C")
+        {
           ChangeState();
+          Serial.println("Change Mode");
+          servoState = 0;
+        }
         else if (cmd == "B" && tankmode == false)
+        {
           achteruit();
           Serial.println("Achteruit");
+          servoState = 0;
+        }
         else if (cmd == "L" && tankmode == false)
+        {
           links();
           Serial.println("Links");
+          servoState = 0;
+        }
         else if (cmd == "R" && tankmode == false)
+        {
           rechts();
           Serial.println("Rechts");
+          servoState = 0;
+        }
         else if (cmd == "S")
         {
-          Serial.println("Alles stoppen (ook servo)");
+          Serial.println("Alles stoppen");
           stopAlles();
           servoState = 0;
         }
@@ -246,11 +260,26 @@ void loop()
           servoState = -1;
         }
         else if (cmd == "L" && tankmode == true)
+        {
           draaiCCW();
+          Serial.println("Links in Tank Mode");
+          servoState = 0;
+        }
         else if (cmd == "R" && tankmode == true)
+        {
           draaiCW();
-        else
+          Serial.println("Rechts in Tank Mode");
+          servoState = 0;
+        }
+        else if ( cmd == "P" && tankmode == true)
+        {
+          Serial.println("Schieten");
+          servoState = 0;
+        }
+        else{
           stopAlles();
+          servoState = 0;
+        }
       }
     }
 
