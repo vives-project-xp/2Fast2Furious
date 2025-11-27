@@ -129,11 +129,14 @@ void setup()
 
 void loop()
 {
+
   if (!connected)
   {
     BLEDevice found = BLE.available();
 
-    if (found && found.localName() == "NanoController")
+    Serial.println("Looking for Nano");
+
+    if (found && found.localName() == "NanoClassifier")
     {
       Serial.println("Peripheral gevonden, verbinden...");
       BLE.stopScan();
