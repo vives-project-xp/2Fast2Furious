@@ -216,30 +216,35 @@ void loop()
         {
           vooruit();
           Serial.println("Vooruit");
+          servoState = 0;
         }
         else if (cmd == "C")
         {
           ChangeState();
           Serial.println("Change Mode");
+          servoState = 0;
         }
         else if (cmd == "B" && tankmode == false)
         {
           achteruit();
           Serial.println("Achteruit");
+          servoState = 0;
         }
         else if (cmd == "L" && tankmode == false)
         {
           links();
           Serial.println("Links");
+          servoState = 0;
         }
         else if (cmd == "R" && tankmode == false)
         {
           rechts();
           Serial.println("Rechts");
+          servoState = 0;
         }
         else if (cmd == "S")
         {
-          Serial.println("Alles stoppen (ook servo)");
+          Serial.println("Alles stoppen");
           stopAlles();
           servoState = 0;
         }
@@ -254,14 +259,27 @@ void loop()
           Serial.println("Servo omlaag");
           servoState = -1;
         }
-        else if (cmd == "L" && tankmode == true){
+        else if (cmd == "L" && tankmode == true)
+        {
           draaiCCW();
-          Serial.println("Link in Tank Mode");}
-        else if (cmd == "R" && tankmode == true){
+          Serial.println("Links in Tank Mode");
+          servoState = 0;
+        }
+        else if (cmd == "R" && tankmode == true)
+        {
           draaiCW();
-          Serial.println("Rechts in Tank Mode");}
-        else
+          Serial.println("Rechts in Tank Mode");
+          servoState = 0;
+        }
+        else if ( cmd == "P" && tankmode == true)
+        {
+          Serial.println("Schieten");
+          servoState = 0;
+        }
+        else{
           stopAlles();
+          servoState = 0;
+        }
       }
     }
 
