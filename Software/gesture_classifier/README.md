@@ -10,6 +10,12 @@ de belangrijkste bestanden in deze folder zijn:
 - [train_tflite_model.py](train_tflite_model.py): Script om het TensorFlow Lite model te trainen met de CSV data.
 - [gesture_classifier.ino](gesture_classifier.ino): Arduino code om het getrainde model te implementeren op een microcontroller.
 
+Dit zijn allemaal codebestanden die gebruikt worden om het model te maken en te implementeren. Daarnaast zijn er ook enkele gegenereerde bestanden:
+
+- `dataset.csv`: De gegenereerde dataset in CSV formaat na het uitvoeren van `convert_cbor_to_csv.py`. Gebruikt als input voor het trainingsscript.
+- `gesture_model.tflite`: Het getrainde TensorFlow Lite model na het uitvoeren van `train_tflite_model.py`.
+- `gesture_model.h`: C header file met het model als byte array voor gebruik in Arduino
+
 ## gebruik
 
 Om het model te gebruiken moet je volgende stappen volgen:
@@ -67,14 +73,18 @@ pip install -r requirements.txt
 ```bash
 cd gesture_classifier
 arduino-cli compile --fqbn arduino:mbed_nano:nano33ble gesture_classifier
-arduino-cli upload -p <PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
+arduino-cli upload -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
 ```
 
-5. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
+vervang `<COM PORT>` door de juiste seriële poort van je microcontroller.
+
+1. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
 
 ```bash
-arduino-cli monitor -p <PORT> --fqbn arduino:mbed_nano:nano33ble
+arduino-cli monitor -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble
 ```
+
+Verander `<COM PORT>` naar de juiste seriële poort van je microcontroller.
 
 ## Hoe model maken
 
@@ -82,7 +92,7 @@ Om de gesture_classifier model te maken heb ik volgende stappen gevolgd:
 
 ### 1. Data verzamelen via Edge Impulse
 
-Handgebaren data werd verzameld met behulp van een microcontroller en Edge Impulse platform:
+Data van handgebaren werd verzameld met behulp van een microcontroller en Edge Impulse platform:
 
 - Ga naar [Edge Impulse](https://edgeimpulse.com) en maak een nieuw project aan
 - Verbind je Arduino Nano 33 BLE Sense Rev2 met Edge Impulse via de Data Forwarder of Edge Impulse CLI
@@ -94,7 +104,7 @@ Handgebaren data werd verzameld met behulp van een microcontroller en Edge Impul
 
 ### 2. Data exporteren uit Edge Impulse
 
-Nadat je genoeg data hebt verzameld, exporteer je de dataset:
+Nadat je genoeg data hebt verzameld (30 tot 50 per gebaar), exporteer je de dataset:
 
 - In Edge Impulse Studio ga naar "Dashboard" of "Data acquisition"
 - Klik op het export icoon of gebruik het menu om "Export" te selecteren
@@ -144,6 +154,7 @@ Het `info.labels` bestand bevat de mapping tussen bestandsnamen en labels:
 
 ### 3. Data omzetten naar CSV
 
+We kunnen de CBOR bestanden niet direct gebruiken om het model te trainen, dus moeten we ze eerst omzetten naar een CSV bestand.
 Gebruik het `convert_cbor_to_csv.py` script om de CBOR bestanden om te zetten naar een CSV bestand:
 
 ```bash
