@@ -48,15 +48,6 @@ String prevCommand = "";
 constexpr int kTensorArenaSize = 12 * 1024;
 alignas(16) uint8_t tensor_arena[kTensorArenaSize];
 
-// Helper to measure free RAM (stack vs heap) — uses sbrk(0) to get heap end
-extern "C" void* sbrk(intptr_t incr);
-int freeMemory() {
-  char stack_dummy;
-  void* heap_end = sbrk(0);
-  // stack grows down, heap grows up; free mem is stack - heap_end
-  intptr_t free = (intptr_t)&stack_dummy - (intptr_t)heap_end;
-  return (int)free;
-}
 
 // Buffers for sensor data (compact int16 to save RAM)
 // accel stored as milli-g (a * 1000), gyro stored as centi-deg/s (g * 100)
