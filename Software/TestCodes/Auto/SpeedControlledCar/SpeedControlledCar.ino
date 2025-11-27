@@ -32,6 +32,7 @@ BLEDevice peripheral;
 BLECharacteristic commandChar;
 bool connected = false;
 String prevCommand = "";
+bool tankmode = false;
 
 
 void setMotorSpeed(int speed_value) {
@@ -98,6 +99,11 @@ void draaiCW()
   motorAchteruit(M2_IN1, M2_IN2);
   motorVooruit(M3_IN1, M3_IN2);
   motorAchteruit(M4_IN1, M4_IN2);
+}
+
+void ChangeState()
+{
+  tankmode = !tankmode;
 }
 
 void draaiCCW()
@@ -208,34 +214,40 @@ void loop()
       {
         prevCommand = cmd;
 
-        if (cmd == "F")
+        if (cmd == "F" && tankmode == false)
           vooruit();
-        else if (cmd == "B")
+          Serial.println("Vooruit");
+        else if(cmd == "C")
+          ChangeState();
+        else if (cmd == "B" && tankmode == false)
           achteruit();
-        else if (cmd == "L")
+          Serial.println("Achteruit");
+        else if (cmd == "L" && tankmode == false)
           links();
-        else if (cmd == "R")
+          Serial.println("Links");
+        else if (cmd == "R" && tankmode == false)
           rechts();
+          Serial.println("Rechts");
         else if (cmd == "S")
         {
           Serial.println("Alles stoppen (ook servo)");
           stopAlles();
           servoState = 0;
         }
-        else if (cmd == "f")
+        else if (cmd == "F" && tankmode == true)
         {
           Serial.println("Servo omhoog");
           servoState = 1;
         }
 
-        else if (cmd == "b")
+        else if (cmd == "B" && tankmode == true)
         {
           Serial.println("Servo omlaag");
           servoState = -1;
         }
-        else if (cmd == "l")
+        else if (cmd == "L" && tankmode == true)
           draaiCCW();
-        else if (cmd == "r")
+        else if (cmd == "R" && tankmode == true)
           draaiCW();
         else
           stopAlles();

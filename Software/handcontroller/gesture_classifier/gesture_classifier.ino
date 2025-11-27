@@ -382,31 +382,12 @@ void loop() {
     BLE.poll();
   #endif
     */
-    // If BLE is initialized, fully stop BLE to avoid stack conflicts during heavy compute
+    // Small delay to allow BLE stack to yield before heavy compute
 #if !DISABLE_BLE
-    if (bleInitialized) {
-      BLE.end();
-      delay(20);
-    }
+    delay(10);
 #endif
 
     TfLiteStatus invoke_status = interpreter->Invoke();
-
-    // Try to re-initialize BLE if it was initialized before
-#if !DISABLE_BLE
-    if (bleInitialized) {
-      if (BLE.begin()) {
-        BLE.setLocalName("NanoClassifier");
-        BLE.setAdvertisedService(controlService);
-        controlService.addCharacteristic(commandCharacteristic);
-        BLE.addService(controlService);
-        BLE.advertise();
-        // Serial.println("BLE restarted after Invoke");
-      } else {
-        Serial.println("Warning: BLE.begin() failed when restarting after Invoke");
-      }
-    }
-#endif
     // Serial.println("Interpreter invoke returned");
     if (invoke_status != kTfLiteOk) {
       Serial.println("ERROR: Invoke failed");
