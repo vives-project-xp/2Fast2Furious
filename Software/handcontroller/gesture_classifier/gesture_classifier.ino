@@ -45,27 +45,15 @@ bool bleInitialized = false;
 String prevCommand = "";
 #endif
 
-// Memory arena for TFLite (further reduced to try to avoid heap/stack collision)
-// If AllocateTensors() fails after this change, we'll try a slightly larger value.
-// Slightly reduced arena to leave more headroom when BLE is enabled.
-// If AllocateTensors() fails, increase this value stepwise (e.g., 14KB -> 16KB).
 constexpr int kTensorArenaSize = 12 * 1024;
 alignas(16) uint8_t tensor_arena[kTensorArenaSize];
 
-// Helper to measure free RAM (stack vs heap) — uses sbrk(0) to get heap end
-extern "C" void* sbrk(intptr_t incr);
-int freeMemory() {
-  char stack_dummy;
-  void* heap_end = sbrk(0);
-  // stack grows down, heap grows up; free mem is stack - heap_end
-  intptr_t free = (intptr_t)&stack_dummy - (intptr_t)heap_end;
-  return (int)free;
-}
 
 // Buffers for sensor data (compact int16 to save RAM)
 // accel stored as milli-g (a * 1000), gyro stored as centi-deg/s (g * 100)
 int16_t sample_buffer[NUM_SAMPLES][NUM_AXES];
 int samples_read = 0;
+
 // Non-blocking sampling state
 bool samplingActive = false;
 unsigned long nextSampleMs = 0;
@@ -77,7 +65,7 @@ const int LOG_SAMPLES = 5; // number of samples to print per cycle (approx)
 const int LOG_INTERVAL = (NUM_SAMPLES + LOG_SAMPLES - 1) / LOG_SAMPLES; // ceil division
 // Track whether the last detected gesture was idle (index 2 in GESTURES)
 bool lastDetectedIsIdle = true;
-// Watchdog for stalled sampling
+
 unsigned long lastSampleTime = 0;
 const unsigned long sampleStallTimeoutMs = 2000; // reset if no samples in 2s
 
@@ -99,8 +87,6 @@ const float feature_std[NUM_FEATURES] = {
 void setup() {
   Serial.begin(115200);
   while (!Serial);
-
-  // Watchdog will be checked in loop() using millis(), no Ticker required.
 
   // Initialize IMU
   if (!IMU.begin()) {
@@ -337,51 +323,19 @@ void loop() {
 
   // If a full buffer has been collected, process it (non-blocking across loop iterations)
   if (samples_read >= NUM_SAMPLES) {
-    /* Debug logging commented out to reduce Serial output / RAM usage
-    Serial.println("Processing buffer: extracting features...");
-  #if !DISABLE_BLE
-    BLE.poll();
-  #endif
-    */
+
     float features[NUM_FEATURES];
     extractFeatures(features);
-    /*Serial.println("Features extracted; normalizing...");
-  #if !DISABLE_BLE
-    BLE.poll();
-  #endif*/
+
     normalizeFeatures(features);
-    /*Serial.println("Normalized. Preparing to run inference...");
-  #if !DISABLE_BLE
-    BLE.poll();
-  #endif
 
-    // Debug: show memory and addresses before copying features
-    Serial.print("freeMemory before copy: ");
-    Serial.println(freeMemory());
-    Serial.print("&tensor_arena: "); Serial.println((uintptr_t)tensor_arena, HEX);
-    Serial.print("kTensorArenaSize: "); Serial.println(kTensorArenaSize);
-    {
-      char local;
-      Serial.print("stack addr: "); Serial.println((uintptr_t)&local, HEX);
-    }
-    Serial.print("heap end (sbrk): "); Serial.println((uintptr_t)sbrk(0), HEX);
-    */
 
+    
     // Copy features to input tensor
     for (int i = 0; i < NUM_FEATURES; i++) {
       input->data.f[i] = features[i];
     }
 
-    /* Debug: memory after copying features
-    Serial.print("freeMemory after copy: ");
-    Serial.println(freeMemory());
-
-    // Run inference
-    Serial.println("Invoking interpreter...");
-  #if !DISABLE_BLE
-    BLE.poll();
-  #endif
-    */
     // Small delay to allow BLE stack to yield before heavy compute
 #if !DISABLE_BLE
     delay(10);
