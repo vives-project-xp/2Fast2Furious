@@ -8,7 +8,7 @@ unsigned long lastServoMove = 0;
 
 #define SPEED_PIN 4             // De enige overgebleven pin voor PWM (snelheidsregeling)
 const int SNELHEID_MAX = 255;   // Maximale snelheid voor vooruit/achteruit/links/rechts
-const int SNELHEID_DRAAI = 120; // Lagere snelheid voor draaiCW/draaiCCW
+const int SNELHEID_DRAAI = 200; // Lagere snelheid voor draaiCW/draaiCCW
 
 // Motor 1
 #define M1_IN1 2
@@ -155,161 +155,188 @@ void setup()
 
 void loop()
 {
-  if (!connected)
-  {
-    BLEDevice found = BLE.available();
-    Serial.println("Searching nano");
-
-    if (found && found.localName() == "NanoClassifier")
+   if (!connected)
     {
-      Serial.println("Peripheral gevonden, verbinden...");
-      BLE.stopScan();
+      BLEDevice found = BLE.available();
+      Serial.println("Searching nano");
 
-      if (found.connect())
+      if (found && found.localName() == "NanoClassifier")
       {
-        Serial.println("Verbonden!");
-        peripheral = found;
-        connected = true;
+        Serial.println("Peripheral gevonden, verbinden...");
+        BLE.stopScan();
 
-        if (peripheral.discoverAttributes())
+        if (found.connect())
         {
-          commandChar = peripheral.characteristic("abcdef01-1234-5678-1234-56789abcdef0");
-          if (commandChar)
+          Serial.println("Verbonden!");
+          peripheral = found;
+          connected = true;
+
+          if (peripheral.discoverAttributes())
           {
-            commandChar.subscribe();
-            Serial.println("Subscribed op command characteristic!");
+            commandChar = peripheral.characteristic("abcdef01-1234-5678-1234-56789abcdef0");
+            if (commandChar)
+            {
+              commandChar.subscribe();
+              Serial.println("Subscribed op command characteristic!");
+            }
           }
         }
+        else
+        {
+          Serial.println("Verbinding mislukt, opnieuw scannen...");
+          BLE.scan();
+        }
       }
-      else
+    }
+
+    if (connected && commandChar)
+    {
+      BLE.poll();
+
+      if (commandChar.valueUpdated())
       {
-        Serial.println("Verbinding mislukt, opnieuw scannen...");
+        uint8_t buffer[20];
+        int length = commandChar.readValue(buffer, sizeof(buffer));
+
+        String cmd = "";
+        if (length > 0)
+        {
+          buffer[length] = '\0';
+          cmd = String((char *)buffer);
+          Serial.print("Ontvangen commando: ");
+          Serial.println(cmd);
+        }
+
+        if (cmd != prevCommand)
+        {
+          Serial.println(tankmode);
+          prevCommand = cmd;
+
+          if (cmd == "F" && tankmode == false)
+          {
+            vooruit();
+            Serial.println("Vooruit");
+          }
+          else if (cmd == "C")
+          {
+            ChangeState();
+            Serial.println("Change Mode");
+          }
+          else if (cmd == "B" && tankmode == false)
+          {
+            achteruit();
+            Serial.println("Achteruit");
+          }
+          else if (cmd == "L" && tankmode == false)
+          {
+            links();
+            Serial.println("Links");
+          }
+          else if (cmd == "R" && tankmode == false)
+          {
+            rechts();
+            Serial.println("Rechts");
+          }
+          else if (cmd == "S")
+          {
+            Serial.println("Alles stoppen (ook servo)");
+            stopAlles();
+            servoState = 0;
+          }
+          else if (cmd == "F" && tankmode == true)
+          {
+            Serial.println("Servo omhoog");
+            servoState = 1;
+          }
+
+          else if (cmd == "B" && tankmode == true)
+          {
+            Serial.println("Servo omlaag");
+            servoState = -1;
+          }
+          else if (cmd == "L" && tankmode == true){
+            draaiCCW();
+            Serial.println("Link in Tank Mode");}
+          else if (cmd == "R" && tankmode == true){
+            draaiCW();
+            Serial.println("Rechts in Tank Mode");}
+          else
+            stopAlles();
+        }
+      }
+
+      if (!peripheral.connected())
+      {
+        Serial.println("Verbinding verbroken, opnieuw scannen...");
+        connected = false;
         BLE.scan();
       }
     }
-  }
 
-  if (connected && commandChar)
-  {
-    BLE.poll();
-
-    if (commandChar.valueUpdated())
+    if (servoState != 0)
     {
-      uint8_t buffer[20];
-      int length = commandChar.readValue(buffer, sizeof(buffer));
+      unsigned long now = millis();
 
-      String cmd = "";
-      if (length > 0)
+      if (now - lastServoMove >= 20)
       {
-        buffer[length] = '\0';
-        cmd = String((char *)buffer);
-        Serial.print("Ontvangen commando: ");
-        Serial.println(cmd);
-      }
+        lastServoMove = now;
 
-      if (cmd != prevCommand)
-      {
-        Serial.println(tankmode);
-        prevCommand = cmd;
-
-        if (cmd == "F" && tankmode == false)
+        if (servoState == 1 && pos < 180)
         {
-          vooruit();
-          Serial.println("Vooruit");
-          servoState = 0;
-        }
-        else if (cmd == "C")
-        {
-          ChangeState();
-          Serial.println("Change Mode");
-          servoState = 0;
-        }
-        else if (cmd == "B" && tankmode == false)
-        {
-          achteruit();
-          Serial.println("Achteruit");
-          servoState = 0;
-        }
-        else if (cmd == "L" && tankmode == false)
-        {
-          links();
-          Serial.println("Links");
-          servoState = 0;
-        }
-        else if (cmd == "R" && tankmode == false)
-        {
-          rechts();
-          Serial.println("Rechts");
-          servoState = 0;
-        }
-        else if (cmd == "S")
-        {
-          Serial.println("Alles stoppen");
-          stopAlles();
-          servoState = 0;
-        }
-        else if (cmd == "F" && tankmode == true)
-        {
-          Serial.println("Servo omhoog");
-          servoState = 1;
+          pos++;
+          myservo.write(pos);
         }
 
-        else if (cmd == "B" && tankmode == true)
+        else if (servoState == -1 && pos > 0)
         {
-          Serial.println("Servo omlaag");
-          servoState = -1;
-        }
-        else if (cmd == "L" && tankmode == true)
-        {
-          draaiCCW();
-          Serial.println("Links in Tank Mode");
-          servoState = 0;
-        }
-        else if (cmd == "R" && tankmode == true)
-        {
-          draaiCW();
-          Serial.println("Rechts in Tank Mode");
-          servoState = 0;
-        }
-        else if ( cmd == "P" && tankmode == true)
-        {
-          Serial.println("Schieten");
-          servoState = 0;
-        }
-        else{
-          stopAlles();
-          servoState = 0;
+          pos--;
+          myservo.write(pos);
         }
       }
     }
+    
+  // test voor alle modes na elkaar
+  /*
+  vooruit();
+  Serial.println("Vooruit");
+  delay(2000);
 
-    if (!peripheral.connected())
-    {
-      Serial.println("Verbinding verbroken, opnieuw scannen...");
-      connected = false;
-      BLE.scan();
-    }
-  }
+  stopAlles();
+  delay(1000);
 
-  if (servoState != 0)
-  {
-    unsigned long now = millis();
+  achteruit();
+  Serial.println("Achteruit");
+  delay(2000);
 
-    if (now - lastServoMove >= 20)
-    {
-      lastServoMove = now;
+  stopAlles();
+  delay(1000);
 
-      if (servoState == 1 && pos < 180)
-      {
-        pos++;
-        myservo.write(pos);
-      }
+  links();
+  Serial.println("Links");
+  delay(2000);
 
-      else if (servoState == -1 && pos > 0)
-      {
-        pos--;
-        myservo.write(pos);
-      }
-    }
-  }
+  stopAlles();
+  delay(1000);
+
+  rechts();
+  Serial.println("Rechts");
+  delay(2000);
+
+  stopAlles();
+  delay(1000);
+
+  draaiCCW();
+  Serial.println("Links in Tank Mode");
+  delay(2000);
+
+  stopAlles();
+  delay(1000);
+
+  draaiCW();
+  Serial.println("Rechts in Tank Mode");
+  delay(2000);
+
+  stopAlles();
+  delay(1000);
+  */
 }
