@@ -8,7 +8,9 @@ De code is georganiseerd in de volgende hoofdmappen om het beheer en de testbaar
 
 * **`MainCode/`**: Bevat de **volledige, definitieve broncode** voor de productieversie van de robot.
     * `auto.ino`: Code voor de **robotwagen** (geupload naar de Arduino op de auto).
+    * `SpeedControlledCar.ino`: Code voor de **robotwagen** met speed controlled auto (geupload naar de Arduino op de auto).
     * `Hand.ino`: Code voor de **handcontroller** (geupload naar de Arduino van de controller).
+
 * **`Test Codes/`**: Bevat diverse **losse scripts** die zijn geschreven om specifieke hardware- of software-onderdelen onafhankelijk te testen, zoals de BLE-verbinding, motoraansturing of sensordata-uitlezing.
 
 ### Gebruikte Libraries

@@ -40,6 +40,12 @@ Er is de mogelijkheid om te kiezen tussen twee schakelingen.
 *Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2: Variabele snelheidsregeling*
 
 
+Om bovenstaande schema na te maken moet je 2 connector pinnen op de H-bruggen verwijderen. Zie foto hieronder.
+
+![schema speedcontroller](./Auto/H_Brug.png)
+
+
+
 
 ## Hand Controller
 
