@@ -5,7 +5,8 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 ## Inhoud
 
 1. [De hardware van de auto](#de-hardware-van-de-auto)
-2. [Handschoen Controller](#hand-controller)
+2. [Hand Controller](#hand-controller)
+3. [Tank](#tank)
 3. [Target](#target)
 
 ## De hardware van de auto
@@ -105,7 +106,22 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 
 ![Schema van de hand controller ](./Handschoen/handControllerCircuitv2.png)
 
-## Kalibratie
+## Tank
+
+### Previews
+
+De RC tank is gemaakt uit vier verschillende onderdelen, zijnde het chassis van de tank, de carosserie, de kop en een loop. 
+
+Het chassis is gedesigned zodat er plaats voorzien is voor de vier motoren, alsook plaats voor twee driver boards. Verder zijn er kleine pinnen voorzien op het chassis zodat de carosserie er op bevestigd kan worden.
+
+Op de bovenkant van de carosserie is er plaats voorzien voor de servo-motor met ook een gat voor bekabeling. Daarnaast zijn er gaten aan de onderkant zodat de carosserie op het chassis past. Aan de bovekant zijn er gaten voorzien voor het bevestigen van de kop.
+
+In de kop is er een gat voorzien om de loop door te steken.
+Ook zijn er pinnen voorzien aan de onderkant voor de montage op de carosserie.
+
+<img src="../"
+
+### STL
 
 ## Target
 

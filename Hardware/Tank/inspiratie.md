@@ -1,4 +1,4 @@
-## inspiratie voor 3d model van de tank
+## Inspiratie voor 3d model van de tank
 
 [cabine + loop](https://cults3d.com/en/3d-model/game/interstellar-army-tank-cannon)
 
