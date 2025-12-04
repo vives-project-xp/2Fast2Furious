@@ -8,13 +8,17 @@ de belangrijkste bestanden in deze folder zijn:
 
 - [convert_cbor_to_csv.py](convert_cbor_to_csv.py): Script om de CBOR data van de handgebaren om te zetten naar CSV formaat.
 - [train_tflite_model.py](train_tflite_model.py): Script om het TensorFlow Lite model te trainen met de CSV data.
-- [gesture_classifier.ino](gesture_classifier.ino): Arduino code om het getrainde model te implementeren op een microcontroller.
+- [gesture_classifier.ino](gesture_classifier.ino): Arduino code om het getrainde model te implementeren op een microcontroller. Deze bevindt zich in de [gesture_classifier](./gesture_classifier/gesture_classifier.ino) map van de handcontroller software.
 
 Dit zijn allemaal codebestanden die gebruikt worden om het model te maken en te implementeren. Daarnaast zijn er ook enkele gegenereerde bestanden:
 
 - `dataset.csv`: De gegenereerde dataset in CSV formaat na het uitvoeren van `convert_cbor_to_csv.py`. Gebruikt als input voor het trainingsscript.
 - `gesture_model.tflite`: Het getrainde TensorFlow Lite model na het uitvoeren van `train_tflite_model.py`.
 - `gesture_model.h`: C header file met het model als byte array voor gebruik in Arduino
+
+Deze bestanden worden automatisch gegenereerd door de scripts en hoeven niet handmatig te worden aangepast.
+
+De gesture-classifier-export map bevat de ruwe data die verzameld is via Edge Impulse. Deze data wordt gebruikt als input voor het conversie script. Deze map is niet in de git repository opgenomen vanwege de grootte van de bestanden. Deze map kan je zelf aanmaken door data te verzamelen via Edge Impulse zoals beschreven in de sectie "Hoe model maken" verderop in deze README.
 
 ## gebruik
 
@@ -78,7 +82,7 @@ arduino-cli upload -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble gesture_clas
 
 vervang `<COM PORT>` door de juiste seriële poort van je microcontroller.
 
-1. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
+5. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
 
 ```bash
 arduino-cli monitor -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble
@@ -212,11 +216,13 @@ Test Accuracy: 0.9500
 ### 5. Model implementeren op microcontroller
 
 Kopieer de gegenereerde bestanden naar je Arduino project:
+
 - `gesture_model.h` → include in je Arduino sketch
 - `labels.json` → (optioneel) om label namen te tonen in plaats van indices
 - `model_params.npz` → bevat normalisatie parameters (deze moet je handmatig in code hardcoden)
 
 Implementeer de code in `gesture_classifier.ino`:
+
 - Laad het model uit `gesture_model.h`
 - Verzamel IMU data in een window buffer
 - Bereken dezelfde statistische features als tijdens training
@@ -278,7 +284,7 @@ Dit is de Arduino code die het getrainde TensorFlow Lite model gebruikt om handg
 
 **Belangrijkste delen van de code:**
 
-- **TensorFlow Lite initialisatie**: De code includeert de TensorFlow Lite Micro bibliotheek en laadt het model uit `gesture_model.h`. Een interpreter wordt aangemaakt met een tensor arena (memory buffer) voor het uitvoeren van inferentie.
+- **TensorFlow Lite initialisatie**: De code includeert de Chirale TensorFlow Lite bibliotheek en laadt het model uit `gesture_model.h`. Een interpreter wordt aangemaakt met een tensor arena (memory buffer) voor het uitvoeren van inferentie.
 
 - **IMU data verzameling**: De ingebouwde IMU sensor (BMI270/BMM150 op Nano 33 BLE Sense Rev2) wordt gebruikt om accelerometer en gyroscoop data te lezen. De code verzamelt een window van metingen (bijvoorbeeld 50-100 samples) om één gebaar te representeren.
 
