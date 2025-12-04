@@ -18,7 +18,7 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 3. 4x TT-Motor
 4. 7.4V Traxxas Batterij
 5. Servo SG90 Micro 
-6. Laser diode
+6. Breadboard
 
 ### Tank gedeelte
 
@@ -28,14 +28,7 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 
 ### Elektrische schema's
 
-Er is de mogelijkheid om te kiezen tussen twee schakelingen na gelange de code die je gebruikt.
-
-1. Vaste snelheidsregeling: De auto hanteert een constante snelheid zodra er input wordt gegeven. Door het verminderde aantal benodigde signaalkabels blijft er capaciteit op de microcontroller over voor extra sensoren of modules.
-![schema speedcontroller](./Auto/Schema_Auto_NonSpeedControlled.png)
-
-*Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2: Vaste snelheidsregeling*
-
-2. Variabele snelheidsregeling: Hierbij zijn alle motoren aangesloten op 1 snelheids regeling Pin. Dit zorgt er voor dat je alle motoren samen kunt versnellen of vertragen. Dit word bij ons gebruikt om in "tank mode" rond te draaien zodat de tank niet te snel draaid.
+1. Variabele snelheidsregeling: Hierbij zijn alle motoren aangesloten op 1 snelheids regeling Pin. Dit zorgt er voor dat je alle motoren samen kunt versnellen of vertragen. Dit word bij ons gebruikt om in "tank mode" rond te draaien zodat de tank niet te snel draaid.
 ![schema speedcontroller](./Auto/Schema_Auto_SpeedControlled_1Pin.png)
 
 *Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2: Variabele snelheidsregeling*
