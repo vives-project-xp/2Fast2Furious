@@ -45,6 +45,10 @@ Om bovenstaande schema na te maken moet je 2 connector pinnen op de H-bruggen ve
 
 ![schema speedcontroller](./Auto/H_Brug.png)
 
+### Schema Lazer 
+
+Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laze zelf 5V nodig. Met 3,3V is deze lazer niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
+
 
 
 
@@ -106,6 +110,10 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 
 ![Schema van de hand controller ](./Handschoen/handControllerCircuitv2.png)
 
+### STL
+
+Alle STL files voor het ontwerp van de handcontroller die gebruikt werden tijdens dit project zijn te vinden in deze [map](./Handschoen/STL_files/).
+
 ## Tank
 
 ### Previews
@@ -124,6 +132,8 @@ Ook zijn er pinnen voorzien aan de onderkant voor de montage op de carosserie.
 <img src="../Documentatie/Afbeeldingen/preview_loop.png" alt="loop" width="400">
 
 ### STL
+
+Alle STL files voor het ontwerp van de tank die gebruikt werden tijdens dit project zijn te vinden in deze [map](./Tank/STL_files/).
 
 ## Target
 

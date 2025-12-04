@@ -2,13 +2,15 @@
 #include <Servo.h>
 
 Servo myservo;
-int pos = 90;       // startpositie servo
+int pos = 0;       // startpositie servo
 int servoState = 0; // 0 = stop, 1 = omhoog, -1 = omlaag
 unsigned long lastServoMove = 0;
 
 #define SPEED_PIN 4             // De enige overgebleven pin voor PWM (snelheidsregeling)
-const int SNELHEID_MAX = 255;   // Maximale snelheid voor vooruit/achteruit/links/rechts
+const int SNELHEID_MAX = 170;   // Maximale snelheid voor vooruit/achteruit/links/rechts
 const int SNELHEID_DRAAI = 75; // Lagere snelheid voor draaiCW/draaiCCW
+
+#define LazerPin 7
 
 // Motor 1
 #define M1_IN1 2
@@ -98,6 +100,31 @@ void draaiCW()
   motorAchteruit(M4_IN1, M4_IN2);
 }
 
+void frontleft(){
+    setMotorSpeed(SNELHEID_MAX);
+  motorVooruit(M2_IN1, M2_IN2);
+  motorVooruit(M4_IN1, M4_IN2);
+  }
+
+void frontright(){
+    setMotorSpeed(SNELHEID_MAX);
+    motorVooruit(M1_IN1, M1_IN2);
+    motorVooruit(M3_IN1, M3_IN2);
+  
+  }
+
+void backleft(){
+    setMotorSpeed(SNELHEID_MAX);
+      motorAchteruit(M1_IN1, M1_IN2);
+      motorAchteruit(M3_IN1, M3_IN2);
+  }
+
+void backright(){
+    setMotorSpeed(SNELHEID_MAX);
+    motorAchteruit(M2_IN1, M2_IN2);
+    motorAchteruit(M4_IN1, M4_IN2);
+  }
+
 void ChangeState()
 {
   tankmode = !tankmode;
@@ -141,6 +168,8 @@ void setup()
   pinMode(M4_IN1, OUTPUT);
   pinMode(M4_IN2, OUTPUT);
 
+  pinMode(LazerPin, OUTPUT);
+
   // BLE setup
   if (!BLE.begin())
   {
@@ -153,8 +182,8 @@ void setup()
   BLE.scan();
 }
 
-void loop()
-{
+void loop(){
+  
    if (!connected)
     {
       BLEDevice found = BLE.available();
@@ -237,6 +266,26 @@ void loop()
             rechts();
             Serial.println("Rechts");
           }
+          else if (cmd == "FL" && tankmode == false)
+          {
+            frontleft();
+            Serial.println("Rechts");
+          }
+          else if (cmd == "FR" && tankmode == false)
+          {
+            frontright();
+            Serial.println("Rechts");
+          }
+          else if (cmd == "BL" && tankmode == false)
+          {
+            backleft();
+            Serial.println("Rechts");
+          }
+          else if (cmd == "BR" && tankmode == false)
+          {
+            backright();
+            Serial.println("Rechts");
+          }
           else if (cmd == "S")
           {
             Serial.println("Alles stoppen (ook servo)");
@@ -254,12 +303,24 @@ void loop()
             Serial.println("Servo omlaag");
             servoState = -1;
           }
-          else if (cmd == "L" && tankmode == true){
+          else if (cmd == "L" && tankmode == true)
+          {
             draaiCCW();
-            Serial.println("Link in Tank Mode");}
-          else if (cmd == "R" && tankmode == true){
+            Serial.println("Link in Tank Mode");
+            }
+          else if (cmd == "R" && tankmode == true)
+          {
             draaiCW();
-            Serial.println("Rechts in Tank Mode");}
+            Serial.println("Rechts in Tank Mode");
+            }
+
+          else if (cmd == "P")
+          {
+            Serial.println("Schieten");
+            digitalWrite(LazerPin , HIGH);
+            delay(3000);
+            digitalWrite(LazerPin , LOW);
+           }
           else
             stopAlles();
         }
@@ -281,7 +342,7 @@ void loop()
       {
         lastServoMove = now;
 
-        if (servoState == 1 && pos < 180)
+        if (servoState == 1 && pos < 80)
         {
           pos++;
           myservo.write(pos);
@@ -294,7 +355,6 @@ void loop()
         }
       }
     }
-    
   // test voor alle modes na elkaar
   /*
   delay(5000);
