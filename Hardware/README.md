@@ -27,7 +27,7 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 
 ### Elektrische schema's
 
-Er is de mogelijkheid om te kiezen tussen twee schakelingen.
+Er is de mogelijkheid om te kiezen tussen twee schakelingen na gelange de code die je gebruikt.
 
 1. Vaste snelheidsregeling: De auto hanteert een constante snelheid zodra er input wordt gegeven. Door het verminderde aantal benodigde signaalkabels blijft er capaciteit op de microcontroller over voor extra sensoren of modules.
 ![schema speedcontroller](./Auto/Schema_Auto_NonSpeedControlled.png)
