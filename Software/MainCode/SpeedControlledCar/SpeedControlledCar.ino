@@ -186,6 +186,7 @@ void loop(){
   
    if (!connected)
     {
+      stopAlles();
       BLEDevice found = BLE.available();
       Serial.println("Searching nano");
 
