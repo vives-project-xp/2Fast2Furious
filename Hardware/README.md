@@ -45,6 +45,10 @@ Om bovenstaande schema na te maken moet je 2 connector pinnen op de H-bruggen ve
 
 ![schema speedcontroller](./Auto/H_Brug.png)
 
+### Schema Lazer 
+
+Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laze zelf 5V nodig. Met 3,3V is deze lazer niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
+
 
 
 
