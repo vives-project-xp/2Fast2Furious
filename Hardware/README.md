@@ -42,8 +42,11 @@ Om bovenstaande schema na te maken moet je 2 connector pinnen op de H-bruggen ve
 
 Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laze zelf 5V nodig. Met 3,3V is deze lazer niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
 
-
-
+Deze schakeling bestaat uit volgende onderdelen:
+1. HW-493 Laser board
+2. BD135 NPN Transistor
+3. 220 Ohm weerstand
+4. 3xAAA batterijhouder
 
 ## Hand Controller
 
@@ -95,7 +98,7 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 ### Onderdelen Hand controller
 1. Arduino Nano 33 BLE Sense REV2
 
-2. 3x AAA batterijhouder
+2. 3xAAA batterijhouder
 
 3. Bracelet behuizing en straps
 
