@@ -15,14 +15,14 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 1. Arduino Nano 33 BLE Sense Rev2
 2. 2x L298N motor driver
 3. 4x TT-Motor
-4. 9V Batterij
+4. 7.4V Traxxas Batterij
 5. Servo SG90 Micro 
-6. Lazer diode
+6. Laser diode
 
 ### Tank gedeelte
 
 1. Servo SG90 Micro
-2. Ontvanger Module voor Laser Diode
+2. Laser Diode Transmitter
 
 
 ### Elektrische schema's
