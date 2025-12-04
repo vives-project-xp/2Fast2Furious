@@ -119,7 +119,9 @@ Op de bovenkant van de carosserie is er plaats voorzien voor de servo-motor met 
 In de kop is er een gat voorzien om de loop door te steken.
 Ook zijn er pinnen voorzien aan de onderkant voor de montage op de carosserie.
 
-<img src="../"
+<img src="../Documentatie/Afbeeldingen/preview_chassis_carosserie.png" alt="chassis" width="400">
+<img src="../Documentatie/Afbeeldingen/preview_kop.png" alt="kop" width="400">
+<img src="../Documentatie/Afbeeldingen/preview_loop.png" alt="loop" width="400">
 
 ### STL
 
