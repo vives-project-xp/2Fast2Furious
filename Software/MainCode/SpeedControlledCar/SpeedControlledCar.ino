@@ -155,7 +155,7 @@ void setup()
 
 void loop()
 {
-   if (!connected)
+ /*  if (!connected)
     {
       BLEDevice found = BLE.available();
       Serial.println("Searching nano");
@@ -296,7 +296,8 @@ void loop()
     }
     
   // test voor alle modes na elkaar
-  /*
+  */
+  delay(5000);
   vooruit();
   Serial.println("Vooruit");
   delay(2000);
@@ -337,6 +338,4 @@ void loop()
   delay(2000);
 
   stopAlles();
-  delay(1000);
-  */
 }
