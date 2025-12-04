@@ -84,8 +84,7 @@ const float feature_std[NUM_FEATURES] = {
 void setup()
 {
   Serial.begin(115200);
-  while (!Serial)
-    ;
+  
 
   // Initialize IMU
   if (!IMU.begin())
