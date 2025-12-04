@@ -13,16 +13,17 @@ Hieronder staat de Bill of Materials (BOM) voor het project:
 | McNamum wielkoppeling | €4,40     | 4      | €17,60      | Koppeling voor mecanum wielen | [otronic](https://www.otronic.nl/nl/67mm-mcnamum-wielkoppeling-met-m2530-schroef.html) |
 | TT-motor | €2,00     | 4      | €8,00      | Motor voor aandrijving van de wielen | [otronic](https://www.otronic.nl/nl/tt-motor-voor-aandrijving-wielen-dubbele-as.html) |
 | L298N motor driver | €2,60     | 2      | €5,20      | Motor driver voor het aansturen van de TT-motoren | [otronic](https://www.otronic.nl/nl/l298n-motor-driver-board-rood.html) |
-| 9V batterijhouder | €1,50     | 1      | €1,50      | Batterijhouder voor 9V batterij | [otronic](https://www.otronic.nl/nl/9v-batterijhouder-met-aan-uit-tuimelschakelaar-9-v.html) |
-| 6V batterijhouder | €0,95     | 2      | €1,90      | Batterijhouder voor 4 AA batterijen (6V) | [otronic](https://www.otronic.nl/nl/4x-aa-batterijhouder-6v.html) |
+| 4,5V batterij houder | €0,85     | 2      | €1,70      | Batterijhouder voor 3 AAA batterijen (4,5V) | [otronic](https://www.otronic.nl/nl/3x-aaa-batterijhouder-45v.html) |
+| 7.4V Traxxas Batterij | €84,95     | 1      | €84,95      | Batterij voor de auto | [bol.com](https://www.bol.com/nl/nl/p/traxxas-lipo-accupack-7-4-v-7600-mah-aantal-cellen-2-25-c-softcase-traxxas-id/9200000058970910/?Referrer=ADVNLGOO002027-S--9200000058970910-PMAX-C-22288392465&gad_source=1&gad_campaignid=22298802154&gbraid=0AAAAAD5OnmOx6hdCjADous-1XCkRdERaB&gclid=Cj0KCQiA_8TJBhDNARIsAPX5qxS0jKvWlpS-_OgMW3X5XYetQJxKOrTVHJH3JCW2OObJcC2sDsqWiW8aApi1EALw_wcB) |
+| Aansluit kabel batterij | €9,95     | 1      | €9,95      | Connector kabel voor batterij | [bol.com](https://www.bol.com/nl/nl/p/laadkabel-traxxas-30cm/9300000013705973/?Referrer=ADVNLGOO002027-S--9300000013705973-PMAX-C-22288392468&gad_source=1&gad_campaignid=22288398957&gbraid=0AAAAAD5OnmMAV1WS-tCLhYzxrX9wIhAM3&gclid=Cj0KCQiAiqDJBhCXARIsABk2kSk3rxvCBQhRX8UGF8qbCyzklJTroNqru3j3aZOgj8H4ycNI7_uOGZQaApc7EALw_wcB) |
 | servomotor SG90 micro | €4,15     | 1      | €4,15      | Servomotor voor kannon op en neer | [otronic](https://www.otronic.nl/nl/servo-sg90-micro-180-graden.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuk2WwIJDgAclXEV5tnT1Aj656PHRDnFzcf_AuOX2mFILzhPvTrnJZBoCsQ8QAvD_BwE) |
 | lasertransmitter | €1,20     | 1      | €1,20      | Lasertransmitter voor kannon | [otronic](https://www.otronic.nl/nl/laser-diode-5v-module-rode-laser-650nm-5mw-koperen.html) |
 | laser ontvanger | €1,95     | 1      | €1,95      | Laser ontvanger voor target | [otronic](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuiG-O_8Bph6YO7Qr4fJCEoCmUfKjolpxiwBfOWCFe0IP3KCnW2P0xhoCoPUQAvD_BwE) |
 | arduino nano | €6,80     | 1      | €6,80      | Microcontroller voor de target | [otronic](https://www.otronic.nl/nl/nano-v3-arduino-compatible-ch340-voorgesoldeerd.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuuQCWR5InQhULsq2bEmu5rOgdqvDIouzecjb0gOtY7eFn1gCphPufxoCwbwQAvD_BwE) |
 | PLA filament | €22,99 | 2 | €45,98 | Voor het 3D printen | [bambu](https://eu.store.bambulab.com/nl/products/pla-basic-filament?srsltid=AfmBOopzl8Ui3SRX1asf7fv3_W_GNpjsnPVJk0DaR7XjuCmrnf9uU5jH&id=43992830017755) |
 
-De totaalprijs van alle componenten is: €162,60
-
+De totaalprijs van alle componenten is: €301,78
+   
 ## Componenten
 
 Hieronder wat meer informatie over de gebruikte componenten:
