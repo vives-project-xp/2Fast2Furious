@@ -8,7 +8,7 @@ unsigned long lastServoMove = 0;
 
 #define SPEED_PIN 4             // De enige overgebleven pin voor PWM (snelheidsregeling)
 const int SNELHEID_MAX = 255;   // Maximale snelheid voor vooruit/achteruit/links/rechts
-const int SNELHEID_DRAAI = 200; // Lagere snelheid voor draaiCW/draaiCCW
+const int SNELHEID_DRAAI = 75; // Lagere snelheid voor draaiCW/draaiCCW
 
 // Motor 1
 #define M1_IN1 2
@@ -77,23 +77,23 @@ void links()
   setMotorSpeed(SNELHEID_MAX);
   motorAchteruit(M1_IN1, M1_IN2);
   motorVooruit(M2_IN1, M2_IN2);
-  motorVooruit(M3_IN1, M3_IN2);
-  motorAchteruit(M4_IN1, M4_IN2);
+  motorAchteruit(M3_IN1, M3_IN2);
+  motorVooruit(M4_IN1, M4_IN2);
 }
 void rechts()
 {
   setMotorSpeed(SNELHEID_MAX);
   motorVooruit(M1_IN1, M1_IN2);
   motorAchteruit(M2_IN1, M2_IN2);
-  motorAchteruit(M3_IN1, M3_IN2);
-  motorVooruit(M4_IN1, M4_IN2);
+  motorVooruit(M3_IN1, M3_IN2);
+  motorAchteruit(M4_IN1, M4_IN2);
 }
 
 void draaiCW()
 {
   setMotorSpeed(SNELHEID_DRAAI);
-  motorVooruit(M1_IN1, M1_IN2);
-  motorAchteruit(M2_IN1, M2_IN2);
+  motorAchteruit(M1_IN1, M1_IN2);
+  motorVooruit(M2_IN1, M2_IN2);
   motorVooruit(M3_IN1, M3_IN2);
   motorAchteruit(M4_IN1, M4_IN2);
 }
@@ -106,8 +106,8 @@ void ChangeState()
 void draaiCCW()
 {
   setMotorSpeed(SNELHEID_DRAAI);
-  motorAchteruit(M1_IN1, M1_IN2);
-  motorVooruit(M2_IN1, M2_IN2);
+  motorVooruit(M1_IN1, M1_IN2);
+  motorAchteruit(M2_IN1, M2_IN2);
   motorAchteruit(M3_IN1, M3_IN2);
   motorVooruit(M4_IN1, M4_IN2);
 }
@@ -155,7 +155,7 @@ void setup()
 
 void loop()
 {
- /*  if (!connected)
+   if (!connected)
     {
       BLEDevice found = BLE.available();
       Serial.println("Searching nano");
@@ -296,7 +296,7 @@ void loop()
     }
     
   // test voor alle modes na elkaar
-  */
+  /*
   delay(5000);
   vooruit();
   Serial.println("Vooruit");
@@ -337,5 +337,5 @@ void loop()
   Serial.println("Rechts in Tank Mode");
   delay(2000);
 
-  stopAlles();
+  stopAlles();*/
 }
