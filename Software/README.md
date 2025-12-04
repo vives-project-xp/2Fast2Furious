@@ -32,7 +32,7 @@ Om de code te uploaden en het project te kunnen draaien, volgt u de onderstaande
 
 1.  **Arduino IDE Installeren:** Zorg ervoor dat de nieuwste versie van de **Arduino IDE** is geïnstalleerd.
 2.  **Libraries Installeren:** Installeer de libraries die vermeld staan in de tabel (via **Sketch > Library's Inclusief > Library's Beheren...** in de IDE).
-3.  **Uploaden naar de Auto:** Open het **`auto.ino`** bestand en upload deze code naar de Arduino die is gemonteerd op de **robotwagen**.
+3.  **Uploaden naar de Auto:** Open het **`SpeedControlledCar.ino`** bestand en upload deze code naar de Arduino die is gemonteerd op de **robotwagen**.
 4.  **Uploaden naar de Controller:** [Voor meer info hier over klik hier](./MainCode/gestureModel/README.md).
 
 >**Tip:** Zorg ervoor dat in de Arduino IDE het juiste **Board** en de juiste **Poort** zijn geselecteerd voordat u de code uploadt.
