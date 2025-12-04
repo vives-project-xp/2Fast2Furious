@@ -97,6 +97,38 @@ void draaiCW()
   motorVooruit(M3_IN1, M3_IN2);
   motorAchteruit(M4_IN1, M4_IN2);
 }
+void diagonallinksvooruit()
+{
+  setMotorSpeed(SNELHEID_MAX);
+  motorStop(M1_IN1, M1_IN2);
+  motorVooruit(M2_IN1, M2_IN2);
+  motorVooruit(M3_IN1, M3_IN2);
+  motorStop(M4_IN1, M4_IN2);
+}
+void diagonallinksachteruit()
+{
+  setMotorSpeed(SNELHEID_MAX);
+  motorStop(M1_IN1, M1_IN2);
+  motorAchteruit(M2_IN1, M2_IN2);
+  motorAchteruit(M3_IN1, M3_IN2);
+  motorStop(M4_IN1, M4_IN2);
+}
+void diagonalerechtsvooruit()
+{
+  setMotorSpeed(SNELHEID_MAX);
+  motorVooruit(M1_IN1, M1_IN2);
+  motorStop(M2_IN1, M2_IN2);
+  motorStop(M3_IN1, M3_IN2);
+  motorVooruit(M4_IN1, M4_IN2);
+}
+void diagonalerechtsachteruit()
+{
+  setMotorSpeed(SNELHEID_MAX);
+  motorAchteruit(M1_IN1, M1_IN2);
+  motorStop(M2_IN1, M2_IN2);
+  motorStop(M3_IN1, M3_IN2);
+  motorAchteruit(M4_IN1, M4_IN2);
+}
 
 void ChangeState()
 {
@@ -212,73 +244,64 @@ void loop()
         Serial.println(tankmode);
         prevCommand = cmd;
 
-        if (cmd == "F" && tankmode == false)
+        switch (cmd && tankmode)
         {
-          vooruit();
+        case cmd == "F" && tankmode == false:
           Serial.println("Vooruit");
+          vooruit();
           servoState = 0;
-        }
-        else if (cmd == "C")
-        {
-          ChangeState();
+          break;
+        case cmd == "C":
           Serial.println("Change Mode");
+          ChangeState();
           servoState = 0;
-        }
-        else if (cmd == "B" && tankmode == false)
-        {
-          achteruit();
+          break;
+        case cmd == "B" && tankmode == false:
           Serial.println("Achteruit");
+          achteruit();
           servoState = 0;
-        }
-        else if (cmd == "L" && tankmode == false)
-        {
-          links();
+          break;
+        case cmd == "L" && tankmode == false:
           Serial.println("Links");
+          links();
           servoState = 0;
-        }
-        else if (cmd == "R" && tankmode == false)
-        {
-          rechts();
+          break;
+        case cmd == "R" && tankmode == false:
           Serial.println("Rechts");
+          rechts();
           servoState = 0;
-        }
-        else if (cmd == "S")
-        {
+          break;
+        case cmd == "S":
           Serial.println("Alles stoppen");
           stopAlles();
           servoState = 0;
-        }
-        else if (cmd == "F" && tankmode == true)
-        {
+          break;
+        case cmd == "F" && tankmode == true:
           Serial.println("Servo omhoog");
           servoState = 1;
-        }
-
-        else if (cmd == "B" && tankmode == true)
-        {
+          break;
+        case cmd == "B" && tankmode == true:
           Serial.println("Servo omlaag");
           servoState = -1;
-        }
-        else if (cmd == "L" && tankmode == true)
-        {
-          draaiCCW();
+          break;
+        case cmd == "L" && tankmode == true:
           Serial.println("Links in Tank Mode");
+          draaiCCW();
           servoState = 0;
-        }
-        else if (cmd == "R" && tankmode == true)
-        {
-          draaiCW();
+          break;
+        case cmd == "R" && tankmode == true:
           Serial.println("Rechts in Tank Mode");
+          draaiCW();
           servoState = 0;
-        }
-        else if ( cmd == "P" && tankmode == true)
-        {
+          break;
+        case cmd == "P" && tankmode == true:
           Serial.println("Schieten");
           servoState = 0;
-        }
-        else{
+          break;
+        default:
           stopAlles();
           servoState = 0;
+          break;
         }
       }
     }
