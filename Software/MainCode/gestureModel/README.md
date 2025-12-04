@@ -293,3 +293,5 @@ Dit is de Arduino code die het getrainde TensorFlow Lite model gebruikt om handg
 - **Inferentie**: De genormaliseerde features worden in de input tensor van het model geplaatst, waarna `interpreter->Invoke()` wordt aangeroepen om de voorspelling te maken. De output tensor bevat waarschijnlijkheden voor elke klasse.
 
 - **Classificatie en actie**: Het gebaar met de hoogste waarschijnlijkheid (boven een bepaalde threshold) wordt geselecteerd. Op basis van het gedetecteerde gebaar (bv. "punch" of "circle") worden specifieke acties uitgevoerd zoals het sturen van een commando via Bluetooth of het aansturen van outputs.
+
+⬅️ [Terug naar overzicht](../../README.md#bestandsstructuur)
