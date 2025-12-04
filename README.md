@@ -57,16 +57,15 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 
 - [x] ambassadeur van het project (poster & sociale media)
 - [x] code testen en aanpassen waar nodig
-- [ ] ontwerp van de laser targets
-- [ ] in elkaar steken van de handcontroller
+- [x] in elkaar steken van de handcontroller
 - [x] in elkaar steken van de RC wagen
 
 ### Sprint 3 (week 9-12)
 
 - [ ] presentatie maken
-- [ ] volledige tank laten rijden
-- [ ] ai model werkende krijgen
+- [ ] github in orde brengen
+- [x] volledige tank laten rijden
+- [x] ai model werkende krijgen
 - [ ] tank laten 'schieten' met laser transmitter
-- [ ] laser receiver werkende krijgen; eventueel overschakelen naar infrarood
 
 

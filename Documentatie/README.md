@@ -19,6 +19,7 @@ Hieronder staat de Bill of Materials (BOM) voor het project:
 | lasertransmitter | €1,20     | 1      | €1,20      | Lasertransmitter voor kannon | [otronic](https://www.otronic.nl/nl/laser-diode-5v-module-rode-laser-650nm-5mw-koperen.html) |
 | laser ontvanger | €1,95     | 1      | €1,95      | Laser ontvanger voor target | [otronic](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuiG-O_8Bph6YO7Qr4fJCEoCmUfKjolpxiwBfOWCFe0IP3KCnW2P0xhoCoPUQAvD_BwE) |
 | arduino nano | €6,80     | 1      | €6,80      | Microcontroller voor de target | [otronic](https://www.otronic.nl/nl/nano-v3-arduino-compatible-ch340-voorgesoldeerd.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuuQCWR5InQhULsq2bEmu5rOgdqvDIouzecjb0gOtY7eFn1gCphPufxoCwbwQAvD_BwE) |
+| PLA filament | €22,99 | 2 | €45,98 | Voor het 3D printen | [bambu](https://eu.store.bambulab.com/nl/products/pla-basic-filament?srsltid=AfmBOopzl8Ui3SRX1asf7fv3_W_GNpjsnPVJk0DaR7XjuCmrnf9uU5jH&id=43992830017755) |
 
 De totaalprijs van alle componenten is: €162,60
 
@@ -34,13 +35,19 @@ De Arduino Nano 33 BLE Sense Rev2 is een compacte  microcontroller vergelijkbaar
 
 De TT-motor is een kleine, goedkope en efficiënte motor die vaak wordt gebruikt in robotica en kleine voertuigen. In ons project gebruiken we de TT-motoren om de mecanum wielen aan te drijven.
 
+![](./Afbeeldingen/afmetingen_motor.png)
+
 ### L298N motor driver
 
 De L298N motor driver is een motor driver die we gebruiken om de TT-motoren aan te sturen. De motor driver kan twee DC-motoren tegelijk aansturen en kan zowel de snelheid als de draairichting van de motoren regelen.
 
+![](./Afbeeldingen/driver_board.png)
+
 ### Mecanum wielen
 
 Mecanum wielen zijn speciale wielen die omnidirectionele beweging mogelijk maken. Dit betekent dat het voertuig in elke richting kan bewegen zonder van richting te veranderen. Dit wordt bereikt door de unieke constructie van de wielen, die bestaan uit meerdere rollers die onder een hoek zijn geplaatst.
+
+![](./Afbeeldingen/afmetingen_wielen.webp)
 
 ### Servomotor SG90 micro
 
@@ -49,6 +56,8 @@ De SG90 is een kleine en lichte servomotor die vaak wordt gebruikt in modelbouw 
 ### Lasertransmitter en ontvanger
 
 De lasertransmitter zendt een laserstraal uit die wordt gebruikt als projectiel in ons lasershooterspel. De laser ontvanger detecteert wanneer de laserstraal wordt geraakt, wat wordt gebruikt om te bepalen of een doelwit is getroffen.
+
+![](./Afbeeldingen/otronic-5v-ontvanger-module-voor-laser-diode.webp)
 
 ### Arduino nano
 
@@ -83,16 +92,5 @@ Hieronder staan de architectuur documenten voor het project.
 ## Prototypes
 
 In de map [afbeeldingen](./Afbeeldingen/) kan je enkele foto's vinden van enkele prototype's. Er is een afbeelding te vinden van een amazon variant waar onze eigen rc wagen op gebaseerd is. Er zijn ook schetsen te vinden over hoe we componenten plaatsen op onze rc wagen (ook te afmetingen zijn hierop te vinden). Verder zijn er afbeeldingen te vinden genaamd 3d_tank en 3d_handcontroller, deze tonen eerdere versies van de uiteindelijke tank en handcontroller.
-
-## Mechanisch ontwerp
-
-Hier komt hoe we alles zullen bevestigen in de tank / rc wagen.
-Er is een inkeping in de 3D print van de grondplaat, de vier motoren en alle andere componenten worden hier in bevestigd. De vier motoren worden vastgemaakt met lijm zodat vermeden wordt dat deze nog kunnen bewegen. Beide driver boards zitten vast met twee bouten en moeren voor extra stevigheid.
-
-### Mogelijke opties voor het bevestigen van de servomotor en laser transmitter
-
-1. Servomotor bevestigen aan de 3D print met lijm, laser transmitter bevestigen aan de servo-arm ook met lijm.
-2. Servomotor bevestigen via schroeven (indien mogelijk) aan de 3D print, hier moet er dan ook rekening mee gehouden worden in de 3D print. De laser transmitter bevestigen aan de arm met schroeven als dit een mogelijkheid is.
-3. 3D geprint houdertje voor zowel de servomotor als voor de laser transmitter. Als we deze optie kiezen moet de 3D print van de kop opnieuw gedesigned worden.
 
 ⬅️ [Terug naar overzicht](../README.md#Inhoud)
