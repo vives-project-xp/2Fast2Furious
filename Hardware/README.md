@@ -38,15 +38,19 @@ Om bovenstaande schema na te maken moet je 2 connector pinnen op de H-bruggen ve
 
 ![schema speedcontroller](./Auto/H_Brug.png)
 
-### Schema Lazer 
+### Schema Laser 
 
-Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laze zelf 5V nodig. Met 3,3V is deze lazer niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
+Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laser zelf 5V nodig. Met 3,3V is deze laser niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
 
 Deze schakeling bestaat uit volgende onderdelen:
 1. HW-493 Laser board
 2. BD135 NPN Transistor
 3. 220 Ohm weerstand
 4. 3xAAA batterijhouder
+
+De drie AAA-batterijen (4,5 V) voeden de laser zodat deze feller is. De Arduino gebruikt de transistor als een digitale schakelaar om deze laser AAN en UIT te zetten.
+
+![schema laser](./Auto/schema%20laser.png)
 
 ## Hand Controller
 
