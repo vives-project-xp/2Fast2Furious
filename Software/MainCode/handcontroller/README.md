@@ -20,11 +20,72 @@ Het model `gesture_model.h` moet zich in dezelfde map bevinden als `gesture_clas
 
 ## Gebruik
 
-1. Open `gesture_classifier.ino` in de Arduino IDE.
-2. Zorg ervoor dat alle vereiste bibliotheken zijn geïnstalleerd.
-3. Upload de code naar de Arduino Nano 33 BLE Sense Rev2.
-4. Koppel de handschoen via Bluetooth aan met de ontvanger (tank). Dit zal automatisch gebeuren zodra de tank en de handschoen worden ingeschakeld.
-5. Open een seriële monitor (baudrate 115200) om debug-informatie te bekijken.
+1. je maakt een .venv aan:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate   
+# Op Linux gebruik je: source .venv/bin/activate
+```
+
+2. Installeer de benodigde packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Installeer arduino libraries in arduino IDE of via Arduino CLI:
+
+    **Arduino IDE**:
+    Installeer volgende libraries in de Arduino IDE via Library Manager (Sketch -> Include Library -> Manage Libraries...):
+
+    - Arduino_BMI270_BMM150
+    - Chirale_TensorFlowLite
+
+    **Arduino CLI**:
+
+   - Download Arduino CLI van [arduino.cc/en/software](https://arduino.cc/en/software) of installeer via package manager indien je deze niet hebt:
+
+   ```bash
+   # Windows (via winget)
+   winget install ArduinoSA.CLI
+
+   # Windows (via chocolatey)
+   choco install arduino-cli
+
+   # macOS
+   brew install arduino-cli
+
+   # Linux
+   curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+   ```
+
+   - Installeer de benodigde boards en libraries:
+
+   ```bash
+   arduino-cli core update-index
+   arduino-cli core install arduino:mbed_nano
+   arduino-cli lib install "Arduino_BMI270_BMM150"
+   arduino-cli lib install "Chirale_TensorFlowLite"
+   ```
+
+4. Compile en flash de Arduino code `gesture_classifier.ino` naar je microcontroller met behulp van de Arduino IDE of Arduino CLI.
+
+```bash
+cd gesture_classifier
+arduino-cli compile --fqbn arduino:mbed_nano:nano33ble gesture_classifier
+arduino-cli upload -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
+```
+
+vervang `<COM PORT>` door de juiste seriële poort van je microcontroller.
+
+5. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
+
+```bash
+arduino-cli monitor -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble
+```
+
+Verander `<COM PORT>` naar de juiste seriële poort van je microcontroller.
 
 ## Uitleg van de code
 

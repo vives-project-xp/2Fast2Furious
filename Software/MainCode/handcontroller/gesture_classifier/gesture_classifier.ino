@@ -59,9 +59,11 @@ unsigned long nextSampleMs = 0;
 const unsigned long sampleIntervalMs = 10; // ms between samples
 unsigned long nextCycleMs = 0;             // cooldown between gesture cycles
 const unsigned long cycleCooldownMs = 500; // wait after inference before next sampling run
+
 // Logging control: how many xi/yi samples to print per full buffer
-const int LOG_SAMPLES = 5;                                              // number of samples to print per cycle (approx)
+const int LOG_SAMPLES = 15;                                              // number of samples to print per cycle (approx)
 const int LOG_INTERVAL = (NUM_SAMPLES + LOG_SAMPLES - 1) / LOG_SAMPLES; // ceil division
+
 // Track whether the last detected gesture was idle (index 2 in GESTURES)
 bool lastDetectedIsIdle = true;
 
@@ -223,8 +225,8 @@ void normalizeFeatures(float features[NUM_FEATURES])
 // Replicates getCommand from TEST_CODES/Hand/Hand.ino
 String getCommand(int16_t xi, int16_t yi)
 {
-  int singleThreshold = 700;   // Voor enkelvoudige richtingen
-  int diagonalThreshold = 300; // Voor diagonale richtingen
+  int singleThreshold = 500;   // Voor enkelvoudige richtingen
+  int diagonalThreshold = 220; // Voor diagonale richtingen
 
   // Eerst diagonalen checken (lagere drempel)
   // NOTE: xi axis is inverted (forward/backwards swapped)
