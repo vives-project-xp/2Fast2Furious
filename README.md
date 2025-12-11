@@ -66,5 +66,5 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 
 ## Verdere uitbreidingen
 
-- Het toevoegen van een kanon op de wagen waardoor deze op een soort tank lijkt. Het kanon is een lasertransmitter waarmee je op doelwitten met een laserreceiver kan schieten.
+- Het maken van doelwitten voor de wagon om op te schieten met het lasersysteem.
 - Het toevoegen van bepaalde handbewegingen om te switchen van drive mode.
