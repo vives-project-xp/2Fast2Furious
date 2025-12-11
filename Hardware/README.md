@@ -142,15 +142,5 @@ Ook zijn er pinnen voorzien aan de onderkant voor de montage op de carosserie.
 
 Alle STL files voor het ontwerp van de tank die gebruikt werden tijdens dit project zijn te vinden in deze [map](./Tank/STL_files/).
 
-## Target
-
-De target bevat een [Laser-receiver](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html).
-Op deze laser-receiver zit een rood lampje die brandt wanneer het target NIET wordt geraakt door de laser.
-
-![ontvanger](../Documentatie/Afbeeldingen/otronic-5v-ontvanger-module-voor-laser-diode.webp) 
-
-We hebben hiervoor een behuizing gemaakt die dan de target zal voorstellen
-![print](./target/prototype_target.png)
-
 ⬅️ [Terug naar overzicht](../README.md#Inhoud)
 
