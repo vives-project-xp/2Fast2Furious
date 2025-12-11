@@ -115,7 +115,7 @@ Dit voorkomt dat de laser onbedoeld aanblijft.
 
 #### Schema:
 
-![Schema van de hand controller ](./Handschoen/handControllerCircuitv2.png)
+![Schema van de hand controller ](./HandController/handControllerCircuitv2.png)
 
 ### STL
 
