@@ -13,16 +13,17 @@ Hieronder staat de Bill of Materials (BOM) voor het project:
 | McNamum wielkoppeling | €4,40     | 4      | €17,60      | Koppeling voor mecanum wielen | [otronic](https://www.otronic.nl/nl/67mm-mcnamum-wielkoppeling-met-m2530-schroef.html) |
 | TT-motor | €2,00     | 4      | €8,00      | Motor voor aandrijving van de wielen | [otronic](https://www.otronic.nl/nl/tt-motor-voor-aandrijving-wielen-dubbele-as.html) |
 | L298N motor driver | €2,60     | 2      | €5,20      | Motor driver voor het aansturen van de TT-motoren | [otronic](https://www.otronic.nl/nl/l298n-motor-driver-board-rood.html) |
-| 9V batterijhouder | €1,50     | 1      | €1,50      | Batterijhouder voor 9V batterij | [otronic](https://www.otronic.nl/nl/9v-batterijhouder-met-aan-uit-tuimelschakelaar-9-v.html) |
-| 6V batterijhouder | €0,95     | 2      | €1,90      | Batterijhouder voor 4 AA batterijen (6V) | [otronic](https://www.otronic.nl/nl/4x-aa-batterijhouder-6v.html) |
-| servomotor SG90 micro | €4,15     | 1      | €4,15      | Servomotor voor kannon op en neer | [otronic](https://www.otronic.nl/nl/servo-sg90-micro-180-graden.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuk2WwIJDgAclXEV5tnT1Aj656PHRDnFzcf_AuOX2mFILzhPvTrnJZBoCsQ8QAvD_BwE) |
-| lasertransmitter | €1,20     | 1      | €1,20      | Lasertransmitter voor kannon | [otronic](https://www.otronic.nl/nl/laser-diode-5v-module-rode-laser-650nm-5mw-koperen.html) |
+| 4,5V batterij houder | €0,85     | 2      | €1,70      | Batterijhouder voor 3 AAA batterijen (4,5V) | [otronic](https://www.otronic.nl/nl/3x-aaa-batterijhouder-45v.html) |
+| 7.4V Traxxas Batterij | €84,95     | 1      | €84,95      | Batterij voor de auto | [bol.com](https://www.bol.com/nl/nl/p/traxxas-lipo-accupack-7-4-v-7600-mah-aantal-cellen-2-25-c-softcase-traxxas-id/9200000058970910/?Referrer=ADVNLGOO002027-S--9200000058970910-PMAX-C-22288392465&gad_source=1&gad_campaignid=22298802154&gbraid=0AAAAAD5OnmOx6hdCjADous-1XCkRdERaB&gclid=Cj0KCQiA_8TJBhDNARIsAPX5qxS0jKvWlpS-_OgMW3X5XYetQJxKOrTVHJH3JCW2OObJcC2sDsqWiW8aApi1EALw_wcB) |
+| Aansluit kabel batterij | €9,95     | 1      | €9,95      | Connector kabel voor batterij | [bol.com](https://www.bol.com/nl/nl/p/laadkabel-traxxas-30cm/9300000013705973/?Referrer=ADVNLGOO002027-S--9300000013705973-PMAX-C-22288392468&gad_source=1&gad_campaignid=22288398957&gbraid=0AAAAAD5OnmMAV1WS-tCLhYzxrX9wIhAM3&gclid=Cj0KCQiAiqDJBhCXARIsABk2kSk3rxvCBQhRX8UGF8qbCyzklJTroNqru3j3aZOgj8H4ycNI7_uOGZQaApc7EALw_wcB) |
+| servomotor SG90 micro | €4,15     | 1      | €4,15      | Servomotor voor kanon op en neer | [otronic](https://www.otronic.nl/nl/servo-sg90-micro-180-graden.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuk2WwIJDgAclXEV5tnT1Aj656PHRDnFzcf_AuOX2mFILzhPvTrnJZBoCsQ8QAvD_BwE) |
+| lasertransmitter | €1,20     | 1      | €1,20      | Lasertransmitter voor kanon | [otronic](https://www.otronic.nl/nl/laser-diode-5v-module-rode-laser-650nm-5mw-koperen.html) |
 | laser ontvanger | €1,95     | 1      | €1,95      | Laser ontvanger voor target | [otronic](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuiG-O_8Bph6YO7Qr4fJCEoCmUfKjolpxiwBfOWCFe0IP3KCnW2P0xhoCoPUQAvD_BwE) |
 | arduino nano | €6,80     | 1      | €6,80      | Microcontroller voor de target | [otronic](https://www.otronic.nl/nl/nano-v3-arduino-compatible-ch340-voorgesoldeerd.html?source=googlebase&gad_source=1&gad_campaignid=19639985996&gbraid=0AAAAACZK5qt2WCV4nNg-E26CpEE2x9rUz&gclid=CjwKCAjwup3HBhAAEiwA7euZuuQCWR5InQhULsq2bEmu5rOgdqvDIouzecjb0gOtY7eFn1gCphPufxoCwbwQAvD_BwE) |
 | PLA filament | €22,99 | 2 | €45,98 | Voor het 3D printen | [bambu](https://eu.store.bambulab.com/nl/products/pla-basic-filament?srsltid=AfmBOopzl8Ui3SRX1asf7fv3_W_GNpjsnPVJk0DaR7XjuCmrnf9uU5jH&id=43992830017755) |
 
-De totaalprijs van alle componenten is: €162,60
-
+De totaalprijs van alle componenten is: €301,78
+   
 ## Componenten
 
 Hieronder wat meer informatie over de gebruikte componenten:
@@ -51,7 +52,7 @@ Mecanum wielen zijn speciale wielen die omnidirectionele beweging mogelijk maken
 
 ### Servomotor SG90 micro
 
-De SG90 is een kleine en lichte servomotor die vaak wordt gebruikt in modelbouw en robotica. In ons project gebruiken we de SG90 servomotor om het kannon van de auto omhoog en omlaag te bewegen.
+De SG90 is een kleine en lichte servomotor die vaak wordt gebruikt in modelbouw en robotica. In ons project gebruiken we de SG90 servomotor om het kanon van de auto omhoog en omlaag te bewegen.
 
 ### Lasertransmitter en ontvanger
 
@@ -63,15 +64,15 @@ De lasertransmitter zendt een laserstraal uit die wordt gebruikt als projectiel 
 
 De Arduino Nano is een kleine, veelzijdige microcontroller die we gebruiken in de target van ons lasershooterspel. Het is verantwoordelijk voor het detecteren van hits van de laserstraal en het bijhouden van de score.
 
-## Idee kannon en target
+## Idee kanon en target
 
-### Kannon
+### Kanon
 
-Het idee dat we hebben voor het kannon is om een servomotor op de tank te plaatsen die het kannon omhoog en omlaag kan bewegen. Op het kannon is een lasertransmitter gemonteerd die een laserstraal uitzendt wanneer het kannon wordt afgevuurd. De lasertransmitter wordt aangestuurd door de Arduino Nano 33 BLE Sense Rev2 op de handcontroller en de servomotor ook. De besturing via de handcontroller zou nog steeds hetzelfde zijn maar we voegen een extra knop toe om te wisselen tussen rijden en turret modus. In turret modus kan de gebruiker het kannon omhoog en omlaag bewegen met behulp van de gyroscoop in de handcontroller, ook kan de gebruiker de tank laten draaien rond zijn eigen as. De laser gaat aan zodra de wagen in turret modus wordt geschakelt.
+Het idee dat we hebben voor het kanon is om een servomotor op de tank te plaatsen die het kanon omhoog en omlaag kan bewegen. Op het kanon is een lasertransmitter gemonteerd die een laserstraal uitzendt wanneer het kanon wordt afgevuurd. De lasertransmitter wordt aangestuurd door de Arduino Nano 33 BLE Sense Rev2 op de handcontroller en de servomotor ook. De besturing via de handcontroller zou nog steeds hetzelfde zijn maar we voegen een extra knop toe om te wisselen tussen rijden en turret modus. In turret modus kan de gebruiker het kanon omhoog en omlaag bewegen met behulp van de gyroscoop in de handcontroller, ook kan de gebruiker de tank laten draaien rond zijn eigen as. De laser gaat aan zodra de wagen in turret modus wordt geschakelt.
 
 ### Target
 
-Het target bestaat uit een Arduino Nano die is verbonden met een laser ontvanger module. De laser ontvanger detecteert wanneer de laserstraal van het kannon het target raakt. Wanneer een hit wordt gedetecteerd, stuurt de Arduino Nano een signaal naar een LED of een buzzer om aan te geven dat het target is geraakt. Daarnaast kan de Arduino Nano ook de score bijhouden en deze weergeven op een klein LCD-scherm.
+Het target bestaat uit een Arduino Nano die is verbonden met een laser ontvanger module. De laser ontvanger detecteert wanneer de laserstraal van het kanon het target raakt. Wanneer een hit wordt gedetecteerd, stuurt de Arduino Nano een signaal naar een LED of een buzzer om aan te geven dat het target is geraakt. Daarnaast kan de Arduino Nano ook de score bijhouden en deze weergeven op een klein LCD-scherm.
 
 ## Introductieposter
 

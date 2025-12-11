@@ -20,76 +20,6 @@ Deze bestanden worden automatisch gegenereerd door de scripts en hoeven niet han
 
 De gesture-classifier-export map bevat de ruwe data die verzameld is via Edge Impulse. Deze data wordt gebruikt als input voor het conversie script. Deze map is niet in de git repository opgenomen vanwege de grootte van de bestanden. Deze map kan je zelf aanmaken door data te verzamelen via Edge Impulse zoals beschreven in de sectie "Hoe model maken" verderop in deze README.
 
-## gebruik
-
-Om het model te gebruiken moet je volgende stappen volgen:
-
-1. je maakt een .venv aan en activeert deze:
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate   
-# Op Linux gebruik je: source .venv/bin/activate
-```
-
-2. Installeer de benodigde packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Installeer arduino libraries in arduino IDE of via Arduino CLI:
-
-    Arduino IDE:
-    Installeer volgende libraries in de Arduino IDE via Library Manager (Sketch -> Include Library -> Manage Libraries...):
-    - Arduino_BMI270_BMM150
-    - Chirale_TensorFlowLite
-
-    Arduino CLI:
-
-   - Download Arduino CLI van [arduino.cc/en/software](https://arduino.cc/en/software) of installeer via package manager indien je deze niet hebt:
-
-   ```bash
-   # Windows (via winget)
-   winget install ArduinoSA.CLI
-
-   # Windows (via chocolatey)
-   choco install arduino-cli
-
-   # macOS
-   brew install arduino-cli
-
-   # Linux
-   curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-   ```
-
-   - Installeer de benodigde boards en libraries:
-
-   ```bash
-   arduino-cli core update-index
-   arduino-cli core install arduino:mbed_nano
-   arduino-cli lib install "Arduino_BMI270_BMM150"
-   arduino-cli lib install "Chirale_TensorFlowLite"
-   ```
-
-4. Compile en flash de Arduino code `gesture_classifier.ino` naar je microcontroller met behulp van de Arduino IDE of Arduino CLI.
-
-```bash
-cd gesture_classifier
-arduino-cli compile --fqbn arduino:mbed_nano:nano33ble gesture_classifier
-arduino-cli upload -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
-```
-
-vervang `<COM PORT>` door de juiste seriële poort van je microcontroller.
-
-5. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
-
-```bash
-arduino-cli monitor -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble
-```
-
-Verander `<COM PORT>` naar de juiste seriële poort van je microcontroller.
-
 ## Hoe model maken
 
 Om de gesture_classifier model te maken heb ik volgende stappen gevolgd:
@@ -230,9 +160,80 @@ Implementeer de code in `gesture_classifier.ino`:
 - Voer inferentie uit en selecteer het gebaar met hoogste waarschijnlijkheid
 - Voer acties uit op basis van het gedetecteerde gebaar
 
+## Testen van het model
+
+Om het model te testen kun je volgende stappen volgen:
+
+1. je maakt een .venv aan:
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate   
+# Op Linux gebruik je: source .venv/bin/activate
+```
+
+2. Installeer de benodigde packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Installeer arduino libraries in arduino IDE of via Arduino CLI:
+
+    **Arduino IDE**:
+    Installeer volgende libraries in de Arduino IDE via Library Manager (Sketch -> Include Library -> Manage Libraries...):
+
+    - Arduino_BMI270_BMM150
+    - Chirale_TensorFlowLite
+
+    **Arduino CLI**:
+
+   - Download Arduino CLI van [arduino.cc/en/software](https://arduino.cc/en/software) of installeer via package manager indien je deze niet hebt:
+
+   ```bash
+   # Windows (via winget)
+   winget install ArduinoSA.CLI
+
+   # Windows (via chocolatey)
+   choco install arduino-cli
+
+   # macOS
+   brew install arduino-cli
+
+   # Linux
+   curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+   ```
+
+   - Installeer de benodigde boards en libraries:
+
+   ```bash
+   arduino-cli core update-index
+   arduino-cli core install arduino:mbed_nano
+   arduino-cli lib install "Arduino_BMI270_BMM150"
+   arduino-cli lib install "Chirale_TensorFlowLite"
+   ```
+
+4. Compile en flash de Arduino code `gesture_classifier.ino` naar je microcontroller met behulp van de Arduino IDE of Arduino CLI.
+
+```bash
+cd gesture_classifier
+arduino-cli compile --fqbn arduino:mbed_nano:nano33ble gesture_classifier
+arduino-cli upload -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
+```
+
+vervang `<COM PORT>` door de juiste seriële poort van je microcontroller.
+
+5. Controleer of het werkt door de seriële monitor te openen in de Arduino IDE of met andere seriële terminal software zoals putty:
+
+```bash
+arduino-cli monitor -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble
+```
+
+Verander `<COM PORT>` naar de juiste seriële poort van je microcontroller.
+
 ### Tips voor betere resultaten
 
-- **Meer data**: Verzamel minimaal 30-50 samples per gebaar voor goede generalisatie
+- **Meer data**: Verzamel minimaal 30-50 samples per gebaar voor goede generalisatie, meer is beter
 - **Data variatie**: Voer gebaren uit met verschillende snelheden, hoeken en startposities
 - **Balanced dataset**: Zorg dat elke klasse ongeveer evenveel samples heeft
 - **Idle klasse**: Voeg een "idle" of "unknown" klasse toe voor wanneer geen gebaar wordt uitgevoerd

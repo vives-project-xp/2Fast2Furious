@@ -13,11 +13,6 @@
 
 We ontwikkelen een RC wagen die alle richtingen uit kan rijden en bestuurd wordt via handbewegingen. De besturing van de wagen gebeurt door middel van een handcontroller die bewegingen van de hand detecteert en deze omzet in commando's voor de wagen.
 
-## Verdere uitbreidingen
-
-- Het toevoegen van een kanon op de wagen waardoor deze op een soort tank lijkt. Het kanon is een lasertransmitter waarmee je op doelwitten met een laserreceiver kan schieten.
-- Het toevoegen van bepaalde handbewegingen om te switchen van drive mode.
-
 ## Inhoud
 
 ### Software
@@ -67,5 +62,12 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 - [x] volledige tank laten rijden
 - [x] ai model werkende krijgen
 - [x] tank laten 'schieten' met laser transmitter
+<<<<<<< HEAD
+=======
+- [ ] documentatie afwerken
+>>>>>>> 56e5feb60e43aa2353fc28dad659fc7227566dd2
 
+## Verdere uitbreidingen
 
+- Het maken van doelwitten voor de wagon om op te schieten met het lasersysteem.
+- Het toevoegen van bepaalde handbewegingen om te switchen van drive mode.
