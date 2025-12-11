@@ -62,7 +62,10 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 - [x] volledige tank laten rijden
 - [x] ai model werkende krijgen
 - [x] tank laten 'schieten' met laser transmitter
+<<<<<<< HEAD
+=======
 - [ ] documentatie afwerken
+>>>>>>> 56e5feb60e43aa2353fc28dad659fc7227566dd2
 
 ## Verdere uitbreidingen
 

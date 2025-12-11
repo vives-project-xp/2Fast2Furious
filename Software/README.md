@@ -7,9 +7,8 @@ In deze map bevindt zich alle **broncode** die ontwikkeld is voor dit project.
 De code is georganiseerd in de volgende hoofdmappen om het beheer en de testbaarheid te optimaliseren:
 
 * **`MainCode/`**: Bevat de **volledige, definitieve broncode** voor de productieversie van de robot.
-* `SpeedControlledCar.ino`: Code voor de **robotwagen** met speed controlled auto. (geupload naar de Arduino op de auto).
-* `Hand.ino`: Code voor de **handcontroller** (geupload naar de Arduino van de controller).
-* `gesture_classifier.ino`: Code voor de **handcontroller** met gestures als **Circle** en **Punch** om van mode te switchen en te "schieten". [Voor meer info hier over klik hier](./MainCode/gestureModel/README.md) .
+    * `SpeedControlledCar.ino`: Code voor de **robotwagen** met speed controlled auto. (geupload naar de Arduino op de auto).
+    * `gesture_classifier.ino`: Code voor de **handcontroller** met gestures als **Circle** en **Punch** om van mode te switchen en te "schieten". [Voor meer info hier over klik hier](./MainCode/gestureModel/README.md) .
 
 * **`Test Codes/`**: Bevat diverse **losse scripts** die zijn geschreven om specifieke hardware- of software-onderdelen onafhankelijk te testen, zoals de BLE-verbinding, motoraansturing of sensordata-uitlezing.
 
