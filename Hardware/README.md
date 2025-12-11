@@ -26,21 +26,23 @@ Deze map bevat alle hardware componenten en schema's voor het project.
 2. Laser Diode Transmitter
 
 
-### Elektrische schema's
+### Elektrisch schema
 
-1. Variabele snelheidsregeling: Hierbij zijn alle motoren aangesloten op 1 snelheids regeling Pin. Dit zorgt er voor dat je alle motoren samen kunt versnellen of vertragen. Dit word bij ons gebruikt om in "tank mode" rond te draaien zodat de tank niet te snel draaid.
 ![schema speedcontroller](./Auto/Schema_Auto_SpeedControlled_1Pin.png)
 
 *Figuur: Elektrisch schema van de auto met Arduino Nano 33 BLE Sense REV2: Variabele snelheidsregeling*
 
 
-Om bovenstaande schema na te maken moet je 2 connector pinnen op de H-bruggen verwijderen. Zie foto hieronder.
+Om bovenstaande schema na te maken moet je de twee omhulsels van de buitenste connector pinnen op de motordrivers verwijderen. Zie foto hieronder.
 
 ![schema speedcontroller](./Auto/H_Brug.png)
 
-### Schema Lazer 
+#### Variabele snelheidsregeling: 
+Op het schema zijn alle motoren aangesloten op 1 snelheids regeling Pin. Dit zorgt er voor dat je alle motoren samen kunt versnellen of vertragen. Dit word bij ons gebruikt om in "tank mode" rond te draaien zodat de tank niet te snel draait en in de "car mode" om de snelhied iets te berpeken tijdens het rijden.
 
-Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laze zelf 5V nodig. Met 3,3V is deze lazer niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
+### Schema Laser 
+
+Helaas stuurt de Arduino Nano 33 BLE Rev2 maar 3,3V signaalen uit en heeft de laser zelf 5V nodig. Met 3,3V is deze laser niet fel genoeg. Hiervoor moesten we nog een schakeling voorzien.
 
 Deze schakeling bestaat uit volgende onderdelen:
 1. HW-493 Laser board
@@ -48,11 +50,15 @@ Deze schakeling bestaat uit volgende onderdelen:
 3. 220 Ohm weerstand
 4. 3xAAA batterijhouder
 
+De drie AAA-batterijen (4,5 V) voeden de laser zodat deze feller is. De Arduino gebruikt de transistor als een digitale schakelaar om deze laser AAN en UIT te zetten.
+
+![schema laser](./Auto/schema%20laser.png)
+
 ## Hand Controller
 
 ### Concept
 
-De hand controller is de intuïtieve/immersive interface voor de besturing van de RC-car, met uitbreiding van een IR-turret.
+De hand controller is de intuïtieve/immersive interface voor de besturing van de RC-car, met uitbreiding van een turret.
 
 ### Kern
 
@@ -68,7 +74,7 @@ De Arduino wordt gemonteerd op een 3D-geprintte palm-bracelet dat ook de 3x AAA 
 
 ### Besturing
 
-De bewegingsdata van de IMU wordt in de Arduino firmware vertaald naar digitale bewegingscommando's en verzonden naar de RC-car.
+De bewegingsdata van de IMU wordt in onze software vertaald naar digitale bewegingscommando's en verzonden naar de RC-car.
 
 | Modus | IMU Data | Commando |
 | :--- | :--- | :--- |
@@ -76,6 +82,10 @@ De bewegingsdata van de IMU wordt in de Arduino firmware vertaald naar digitale 
 | Car | Kantelen naar achteren | Rijden achteruit |
 | Car | Kantelen naar links | Rijden links |
 | Car | Kantelen naar rechts | Rijden rechts |
+| Car | Kantelen naar linksvoor | Rijden linksvoor in hondengang |
+| Car | Kantelen naar rechtsvoor | Rijden rechtsvoor in hondengang |
+| Car | Kantelen naar linksachter | Rijden linksachter in hondengang |
+| Car | Kantelen naar rechtsachter | Rijden rechtsachter in hondengang |
 | Turret | Kantelen naar links | Car roteert op as links |
 | Turret | Kantelen naar rechts | Car roteert op as rechts |
 | Turret | Kantelen naar voren | Turret mikt hoger (servo) |
@@ -83,15 +93,16 @@ De bewegingsdata van de IMU wordt in de Arduino firmware vertaald naar digitale 
 
 ### Turret Modus
 
-A.d.h.v. Gesture Recognition kan de user schakelen tussen verschillende modussen.
+Aan de hand van Gesture Recognition kan de user schakelen tussen verschillende modussen.
 In Turret Modus veranderd de interpretatie van de IMU-data:
 
 Zijwaartse kanteling wordt gebruikt om de car op zijn vaste as te laten roteren, zoals in tank-besturing.
-De voor- en achterwaartse kanteling wordt gebruikt om een servomotor in de turret aan te sturen. Deze servo is verantwoordelijk voor de elevatie van een gemonteerde IR-laser.
+De voor- en achterwaartse kanteling wordt gebruikt om een servomotor in de turret aan te sturen. Deze servo is verantwoordelijk voor de elevatie van een gemonteerde laserdiode.
 
-### IR-Laser
+### Laserdiode
 
-De eerdervernoemde drukknop die de modus schakelt heeft een secundaire functie, namelijk de IR-laser aan of uit schakelen, waarbij deze in de Turret Modus aanstaat.
+De eerdervernoemde Gesture Recognition die zorgt voor schakelen tussen de twee modussen en heeft een secundaire functie, namelijk de laserdiode aan of uit schakelen.
+De 'Gesture' die men daarvoor moet doen is een 'punch' of met andere woorden een stoot geven met de vuist.
 Dit voorkomt dat de laser onbedoeld aanblijft.
 
 
@@ -118,7 +129,7 @@ De RC tank is gemaakt uit vier verschillende onderdelen, zijnde het chassis van 
 
 Het chassis is gedesigned zodat er plaats voorzien is voor de vier motoren, alsook plaats voor twee driver boards. Verder zijn er kleine pinnen voorzien op het chassis zodat de carosserie er op bevestigd kan worden.
 
-Op de bovenkant van de carosserie is er plaats voorzien voor de servo-motor met ook een gat voor bekabeling. Daarnaast zijn er gaten aan de onderkant zodat de carosserie op het chassis past. Aan de bovekant zijn er gaten voorzien voor het bevestigen van de kop.
+Op de bovenkant van de carosserie is er plaats voorzien voor de servo-motor met ook een gat voor bekabeling. Daarnaast zijn er gaten aan de onderkant zodat de carosserie op het chassis past. Aan de bovenkant zijn er gaten voorzien voor het bevestigen van de kop.
 
 In de kop is er een gat voorzien om de loop door te steken.
 Ook zijn er pinnen voorzien aan de onderkant voor de montage op de carosserie.
@@ -133,7 +144,8 @@ Alle STL files voor het ontwerp van de tank die gebruikt werden tijdens dit proj
 
 ## Target
 
-De target bevat een [Laser-receiver](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html)
+De target bevat een [Laser-receiver](https://www.otronic.nl/nl/5v-ontvanger-module-voor-laser-diode.html).
+Op deze laser-receiver zit een rood lampje die brandt wanneer het target NIET wordt geraakt door de laser.
 
 ![ontvanger](../Documentatie/Afbeeldingen/otronic-5v-ontvanger-module-voor-laser-diode.webp) 
 
