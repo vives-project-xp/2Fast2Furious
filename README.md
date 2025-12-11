@@ -66,6 +66,6 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 - [ ] github in orde brengen
 - [x] volledige tank laten rijden
 - [x] ai model werkende krijgen
-- [ ] tank laten 'schieten' met laser transmitter
+- [x] tank laten 'schieten' met laser transmitter
 
 
