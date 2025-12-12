@@ -185,7 +185,7 @@ void setup()
 
 void loop(){
   
-   if (!connected)
+  if (!connected)
     {
       stopAlles();
       BLEDevice found = BLE.available();
@@ -322,7 +322,7 @@ void loop(){
             digitalWrite(LazerPin , HIGH);
             delay(3000);
             digitalWrite(LazerPin , LOW);
-           }
+          }
           else
             stopAlles();
         }
@@ -350,7 +350,7 @@ void loop(){
           {
             pos++;
             myservo.write(pos);
-            if (pos >= 75) servoState = 0; // stop at upper limit
+            if (pos >= 75) servoState = 0;
           }
           else
           {
@@ -364,7 +364,7 @@ void loop(){
           {
             pos--;
             myservo.write(pos);
-            if (pos <= 25) servoState = 0; // stop at lower limit
+            if (pos <= 25) servoState = 0;
           }
           else
           {
