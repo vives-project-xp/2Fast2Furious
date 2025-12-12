@@ -7,8 +7,6 @@
 
 <img src="./Documentatie/Introductieposter/introductieposter_v2.png" alt="Poster" width="600">
 
-
-
 ## Opdracht
 
 We ontwikkelen een RC wagen die alle richtingen uit kan rijden en bestuurd wordt via handbewegingen. De besturing van de wagen gebeurt door middel van een handcontroller die bewegingen van de hand detecteert en deze omzet in commando's voor de wagen.
@@ -57,8 +55,8 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 
 ### Sprint 3 (week 9-12)
 
-- [ ] presentatie maken
-- [ ] github in orde brengen
+- [X] presentatie maken
+- [X] github in orde brengen
 - [x] volledige tank laten rijden
 - [x] ai model werkende krijgen
 - [x] tank laten 'schieten' met laser transmitter
@@ -67,4 +65,3 @@ De documentatie en handleidingen voor het project zijn te vinden in de [Document
 ## Verdere uitbreidingen
 
 - Het maken van doelwitten voor de wagon om op te schieten met het lasersysteem.
-- Het toevoegen van bepaalde handbewegingen om te switchen van drive mode.

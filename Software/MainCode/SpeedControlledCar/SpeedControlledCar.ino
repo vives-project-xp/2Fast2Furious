@@ -2,7 +2,7 @@
 #include <Servo.h>
 
 Servo myservo;
-int pos = 0;       // startpositie servo
+int pos = 50;       // startpositie servo
 int servoState = 0; // 0 = stop, 1 = omhoog, -1 = omlaag
 unsigned long lastServoMove = 0;
 
@@ -154,6 +154,7 @@ void setup()
   Serial.begin(9600);
 
   myservo.attach(9);
+  myservo.write(pos);
 
   pinMode(SPEED_PIN, OUTPUT);
   setMotorSpeed(0);
@@ -184,7 +185,7 @@ void setup()
 
 void loop(){
   
-   if (!connected)
+  if (!connected)
     {
       stopAlles();
       BLEDevice found = BLE.available();
@@ -321,7 +322,7 @@ void loop(){
             digitalWrite(LazerPin , HIGH);
             delay(3000);
             digitalWrite(LazerPin , LOW);
-           }
+          }
           else
             stopAlles();
         }
@@ -343,16 +344,32 @@ void loop(){
       {
         lastServoMove = now;
 
-        if (servoState == 1 && pos < 80)
+        if (servoState == 1)
         {
-          pos++;
-          myservo.write(pos);
+          if (pos < 75)
+          {
+            pos++;
+            myservo.write(pos);
+            if (pos >= 75) servoState = 0;
+          }
+          else
+          {
+            servoState = 0;
+          }
         }
 
-        else if (servoState == -1 && pos > 0)
+        else if (servoState == -1)
         {
-          pos--;
-          myservo.write(pos);
+          if (pos > 25)
+          {
+            pos--;
+            myservo.write(pos);
+            if (pos <= 25) servoState = 0;
+          }
+          else
+          {
+            servoState = 0;
+          }
         }
       }
     }
