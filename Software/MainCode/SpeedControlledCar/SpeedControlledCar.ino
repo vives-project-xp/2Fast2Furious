@@ -335,7 +335,8 @@ void loop(){
         BLE.scan();
       }
     }
-
+        //Serial.print("Servo Positie");
+        //Serial.println(pos);
     if (servoState != 0)
     {
       unsigned long now = millis();
