@@ -5,7 +5,7 @@
 
 > Ontwikkel een RC wagen die bestuurd wordt via handbewegingen
 
-<img src="./Documentatie/Introductieposter/introductieposter_v2.png" alt="Poster" width="600">
+<img src="./Documentatie/Introductieposter/introductieposter_v3.png" alt="Poster" width="600">
 
 ## Opdracht
 
@@ -23,7 +23,11 @@ De hardware componenten en schema's zijn te vinden in de [Hardware](Hardware/REA
 
 ### Documentatie
 
-De documentatie en handleidingen voor het project zijn te vinden in de [Documentatie](Documentatie/README.md) map. Hierin vind je  technische documentatie. Hierin vind je ook de uitleg over de componenten en hoe we deze hebben gebruikt in het project.
+De documentatie voor het project zijn te vinden in de [Documentatie](Documentatie/README.md) map. Hierin vind je  technische documentatie. Hierin vind je ook de uitleg over de componenten en hoe we deze hebben gebruikt in het project.
+
+### Handleiding
+
+De handleiding om dit project in elkaar steken en werkende te krijgen kan men vinden in de [Handleiding](Handleiding/README.md) map.
 
 ## Team
 
