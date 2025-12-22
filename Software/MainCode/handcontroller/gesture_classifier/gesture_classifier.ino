@@ -61,7 +61,7 @@ unsigned long nextCycleMs = 0;             // cooldown between gesture cycles
 const unsigned long cycleCooldownMs = 500; // wait after inference before next sampling run
 
 // Logging control: how many xi/yi samples to print per full buffer
-const int LOG_SAMPLES = 15;                                              // number of samples to print per cycle (approx)
+const int LOG_SAMPLES = 12;                                              // number of samples to print per cycle (approx)
 const int LOG_INTERVAL = (NUM_SAMPLES + LOG_SAMPLES - 1) / LOG_SAMPLES; // ceil division
 
 // Track whether the last detected gesture was idle (index 2 in GESTURES)

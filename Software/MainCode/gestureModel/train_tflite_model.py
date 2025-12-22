@@ -19,7 +19,6 @@ df = df.dropna(subset=feature_cols + ["label"]).reset_index(drop=True)
 df = df.sort_values(["filename", "timestep"]).reset_index(drop=True)
 
 # Aggregate per recording with fixed window approach
-# We'll use a simpler approach: extract statistical features per recording
 def extract_features(g):
     arr = g[feature_cols].astype(float).values
     feats = []

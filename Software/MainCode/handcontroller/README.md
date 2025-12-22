@@ -72,7 +72,7 @@ pip install -r requirements.txt
 4. Compile en flash de Arduino code `gesture_classifier.ino` naar je microcontroller met behulp van de Arduino IDE of Arduino CLI.
 
 ```bash
-cd gesture_classifier
+cd handcontroller/gesture_classifier
 arduino-cli compile --fqbn arduino:mbed_nano:nano33ble gesture_classifier
 arduino-cli upload -p <COM PORT> --fqbn arduino:mbed_nano:nano33ble gesture_classifier
 ```
